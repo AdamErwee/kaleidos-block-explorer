@@ -1,32 +1,33 @@
-// src/api.ts
-
 import axios from "axios";
 
-// Define the base URL for Blockchain.com's API
-const BASE_URL = "https://blockchain.info";
-
-// Define the function to fetch the latest blocks
-const fetchLatestBlocks = async (count: number) => {
+const fetchBlocks = async (chain: string): Promise<any[]> => {
   try {
-    // Make a GET request to fetch the latest blocks
-    const response = await axios.get(`${BASE_URL}/blocks/${count}?format=json`);
+    const response = await axios.get<any>(
+      `https://api.blockchair.com/bitcoin/blocks?limit=15`
+    );
 
-    // Transform the response data into an array of objects with required fields
-    const latestBlocks = response.data.blocks.map((block: any) => ({
-      height: block.height,
-      hash: block.hash,
-      mined: block.time,
-      miner: block.miner,
-      size: block.size,
-    }));
+    console.log("response: ", response.data.data.length);
+    console.log("response: ", response.data.data[0]);
 
-    // Return the array of latest blocks
-    return latestBlocks;
+    if (response.data && Array.isArray(response.data)) {
+      // Generally this response is sorted by height, here I'm just making sure that this is the case
+      const heightSortedBlocks = response.data.sort(
+        (a: any, b: any) => b.height - a.height
+      );
+
+      // For now I'm limiting the displayed amount to 15 (seems sufficient for now)
+      const minLatestBlocks = heightSortedBlocks.slice(0, 15);
+
+      return minLatestBlocks;
+    } else {
+      // Return an empty array if no blocks are found
+      return [];
+    }
   } catch (error) {
     // Handle errors if any
-    console.error("Error fetching latest blocks:", error);
+    console.error("Error fetching blocks for day:", error);
     throw error;
   }
 };
 
-export default fetchLatestBlocks;
+export default fetchBlocks;
