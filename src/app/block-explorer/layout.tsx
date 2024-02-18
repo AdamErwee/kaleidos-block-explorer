@@ -1,4 +1,4 @@
-import getChains from "../../actions/getChains";
+import getChains from "../../api/getChainPrices";
 import Search from "../../components/search";
 import Sidebar from "../../components/sidebar";
 import {

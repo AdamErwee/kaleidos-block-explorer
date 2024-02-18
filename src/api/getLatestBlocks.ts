@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const fetchBlocks = async (chain: string): Promise<any[]> => {
+const getLatestBlocks = async (chain: string | undefined): Promise<any[]> => {
+  if (!chain) {
+    return [];
+  }
   console.log("chain: ", chain);
   try {
     const response = await axios.get<any>(
@@ -31,4 +34,4 @@ const fetchBlocks = async (chain: string): Promise<any[]> => {
   }
 };
 
-export default fetchBlocks;
+export default getLatestBlocks;
