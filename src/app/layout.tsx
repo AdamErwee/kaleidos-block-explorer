@@ -1,10 +1,10 @@
-import StyledComponentsRegistry from "../lib/registry";
+import Providers from "./provider";
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = (props: React.PropsWithChildren) => {
   return (
-    <html lang="en">
+    <html>
       <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <Providers>{props.children}</Providers>
       </body>
     </html>
   );

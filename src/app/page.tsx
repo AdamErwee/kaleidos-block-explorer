@@ -6,5 +6,5 @@ export default function Page() {
   // const chain = 'ethereum'
 
   //  fetchBlocks(chain);
-  return <div>Hello, Next.js!</div>;
+  return <h1>Hello, Next.js!</h1>;
 }
