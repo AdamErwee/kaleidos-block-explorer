@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const fetchBlocks = async (chain: string): Promise<any[]> => {
+  console.log("chain: ", chain);
   try {
     const response = await axios.get<any>(
-      `https://api.blockchair.com/bitcoin/blocks?limit=15`
+      `https://api.blockchair.com/${chain}/blocks?limit=15`
     );
 
     console.log("response: ", response.data.data.length);

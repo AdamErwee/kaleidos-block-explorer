@@ -1,11 +1,11 @@
-import fetchBlocks from './api';
+import fetchBlocks from '../api';
 
 export default function Page() {
-  // const bitcoin = 'bitcoin';
-  // const bitcoinCash = 'bitcoin-cash';
-  const ethereum = 'ethereum'
+  // const chain = 'bitcoin';
+  const chain = 'bitcoin-cash';
+  // const chain = 'ethereum'
 
-   fetchBlocks(ethereum);
+   fetchBlocks(chain);
   return <h1>Hello, Next.js!</h1>
 }
 
