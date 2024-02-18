@@ -1,16 +1,14 @@
-const Layout = ({
-    children,
-}: {
-    children: React.ReactNode
-}) => {
-    // Chain List sidebar left
-    // Search header
-    // Table header
-    return (
-        <div>
-            {children}
-        </div>
-    )
-}
+const BlockExplorerLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div>
+      <h1>Placeholder - Block Explorer Sidebar</h1>
+      <h1>Placeholder - Search Header</h1>
+      <div>
+        <h1>Placeholder - Latest Blocks</h1>
+        {children}
+      </div>
+    </div>
+  );
+};
 
-export default Layout;
+export default BlockExplorerLayout;

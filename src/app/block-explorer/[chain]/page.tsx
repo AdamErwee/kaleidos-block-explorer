@@ -1,3 +1,5 @@
-export default function LatestBlocks() {
-    return <h1>Block Screen</h1>
+const LatestBlocks = () => {
+    return <h1>Placeholder - latest blocks table</h1>
   }
+
+  export default LatestBlocks
