@@ -20,6 +20,7 @@ export const Chain = styled.div<ChainProps>`
   gap: 10px;
   align-items: center;
   padding: 10px;
+  border-radius: 5px;
   background-color: ${({ $activeChain }) => $activeChain && colors.light};
 
   &:hover {

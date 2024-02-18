@@ -13,11 +13,10 @@ const GlobalStyles = createGlobalStyle`
   body {
     display: flex;
     flex-direction: column;
-    background-color: yellow;
     font-family: sans-serif;
   }
 
-  h1 {
+  h1, h2, h3 {
     margin: 0 0 30px 0;
     color: ${colors.primary};
   }

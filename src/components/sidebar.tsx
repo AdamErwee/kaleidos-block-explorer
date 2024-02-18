@@ -21,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ chains }) => {
 
   return (
     <SidebarContainer>
-      <h1>Block Explorer</h1>
+      <h2>Block Explorer</h2>
       {chains.map(({ name, icon, currentPrice, abbreviation }) => {
         return (
           <Chain

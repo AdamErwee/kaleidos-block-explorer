@@ -1,10 +1,12 @@
 "use client";
 
 import styled from "styled-components";
+import colors from "./colors";
 
 export const ButtonContainer = styled.button<{ backgroundColor?: string }>`
   padding: 10px 20px;
-  background-color: ${({ backgroundColor }) => backgroundColor || "#7EAFF1"};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || colors.secondary};
   color: white;
   border: none;
   border-radius: 3px;

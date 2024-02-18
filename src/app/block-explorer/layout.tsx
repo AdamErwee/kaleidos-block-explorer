@@ -17,7 +17,7 @@ const BlockExplorerLayout = async ({
       <Sidebar chains={chainData} />
       <TableContainer>
         <Search />
-        <h1>Latest Blocks</h1>
+        <h2>Latest Blocks</h2>
       </TableContainer>
     </Container>
   );

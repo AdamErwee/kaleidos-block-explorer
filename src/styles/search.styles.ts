@@ -8,8 +8,7 @@ export const SearchContainer = styled.div`
   flex-direction: row;
   gap: 10px;
   justify-content: space-between;
-  background-color: green;
-  padding: 20px;
+  margin: 0 0 30px 0;
 `;
 
 export const InputContainer = styled.div`
@@ -19,7 +18,7 @@ export const InputContainer = styled.div`
   width: 100%;
   padding: 10px 30px 10px 10px;
   background-color: ${colors.light};
-  border: 1px solid ${colors.dark};
+  border: 1px solid ${colors.light};
   border-radius: 5px;
   color: ${colors.dark};
 `;
@@ -29,7 +28,8 @@ export const Input = styled.input`
   background: none;
   border: none;
   outline: none;
-  ::placeholder {
+
+  &::placeholder {
     color: ${colors.dark};
   }
 `;
