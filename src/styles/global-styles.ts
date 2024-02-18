@@ -8,10 +8,18 @@ export const Header = styled.div`
 `;
 
 const GlobalStyles = createGlobalStyle`
-  body {
+  html, body {
+    box-sizing: border-box;
+    height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    font-family: sans-serif;
   }
 `;
 

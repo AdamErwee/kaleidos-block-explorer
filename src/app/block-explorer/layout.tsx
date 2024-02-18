@@ -1,25 +1,17 @@
+import Search from "../../components/search";
+import Sidebar from "../../components/sidebar";
 import {
   Container,
-  SidebarContainer,
-  SearchContainer,
   TableContainer,
-} from "../../styles/block-explorer.styles";
+} from "../../styles/block-explorer-layout.styles";
 
 const BlockExplorerLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container>
-      <SidebarContainer>
-        {/* Sidebar content */}
-        <h1>Sidebar</h1>
-      </SidebarContainer>
-      <SearchContainer>
-        {/* Search header content */}
-        <h1>Search Header</h1>
-      </SearchContainer>
+      <Sidebar />
       <TableContainer>
-        {/* Table container content */}
-        <h1>Table</h1>
-        {children}
+        <Search />
+        <h1>Latest Blocks</h1>
       </TableContainer>
     </Container>
   );

@@ -1,5 +1,5 @@
 const LatestBlocks = () => {
-    return <h1>Placeholder - latest blocks table</h1>
+    return <h1>Table</h1>;
   }
 
   export default LatestBlocks
