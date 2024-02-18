@@ -4,6 +4,7 @@ import React from "react";
 import {
   Chain,
   ChainTextContainer,
+  ChainsContainer,
   SidebarContainer,
 } from "../styles/sidebar.styles";
 import { ChainInfo } from "../types/chainInfo";
@@ -22,21 +23,23 @@ const Sidebar: React.FC<SidebarProps> = ({ chains }) => {
   return (
     <SidebarContainer>
       <h2>Block Explorer</h2>
-      {chains.map(({ name, icon, currentPrice, abbreviation }) => {
-        return (
-          <Chain
-            key={`${name}-list-item`}
-            $activeChain={pathname.includes(abbreviation)}
-            onClick={() => router.push(`/block-explorer/${abbreviation}`)}
-          >
-            <Image src={icon} alt={`${name}-icon`} width={40} height={40} />
-            <ChainTextContainer>
-              <MainText>{name}</MainText>
-              <SubText>${currentPrice}</SubText>
-            </ChainTextContainer>
-          </Chain>
-        );
-      })}
+      <ChainsContainer>
+        {chains.map(({ name, icon, currentPrice, abbreviation }) => {
+          return (
+            <Chain
+              key={`${name}-list-item`}
+              $activeChain={pathname.includes(abbreviation)}
+              onClick={() => router.push(`/block-explorer/${abbreviation}`)}
+            >
+              <Image src={icon} alt={`${name}-icon`} width={40} height={40} />
+              <ChainTextContainer>
+                <MainText>{name}</MainText>
+                <SubText>${currentPrice}</SubText>
+              </ChainTextContainer>
+            </Chain>
+          );
+        })}
+      </ChainsContainer>
     </SidebarContainer>
   );
 };

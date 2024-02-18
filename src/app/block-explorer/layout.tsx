@@ -18,6 +18,7 @@ const BlockExplorerLayout = async ({
       <TableContainer>
         <Search />
         <h2>Latest Blocks</h2>
+        {children}
       </TableContainer>
     </Container>
   );

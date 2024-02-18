@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   h1, h2, h3 {
-    margin: 0 0 30px 0;
+    margin: 0;
     color: ${colors.primary};
   }
 `;

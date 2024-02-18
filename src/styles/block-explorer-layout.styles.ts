@@ -13,6 +13,7 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 30px;
   width: 75%;
   padding: 20px;
 `;

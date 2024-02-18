@@ -8,7 +8,6 @@ export const SearchContainer = styled.div`
   flex-direction: row;
   gap: 10px;
   justify-content: space-between;
-  margin: 0 0 30px 0;
 `;
 
 export const InputContainer = styled.div`

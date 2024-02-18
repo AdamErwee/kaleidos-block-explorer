@@ -10,8 +10,14 @@ interface ChainProps {
 export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 30px;
   padding: 25px;
   width: 25%;
+`;
+
+export const ChainsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Chain = styled.div<ChainProps>`
