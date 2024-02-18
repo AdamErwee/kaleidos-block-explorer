@@ -1,4 +1,4 @@
-import fetchBlocks from '../api';
+import fetchBlocks from '../api/api';
 
 export default function Page() {
   // const chain = 'bitcoin';
