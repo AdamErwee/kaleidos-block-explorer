@@ -1,6 +1,7 @@
 "use client";
 
 import styled from "styled-components";
+import colors from "./colors";
 
 export const SearchContainer = styled.div`
   display: flex;
@@ -17,10 +18,10 @@ export const InputContainer = styled.div`
   gap: 10px;
   width: 100%;
   padding: 10px 30px 10px 10px;
-  background-color: #eff0f5;
-  border: 1px solid #717784;
+  background-color: ${colors.light};
+  border: 1px solid ${colors.dark};
   border-radius: 5px;
-  color: #717784;
+  color: ${colors.dark};
 `;
 
 export const Input = styled.input`
@@ -29,6 +30,6 @@ export const Input = styled.input`
   border: none;
   outline: none;
   ::placeholder {
-    color: #717784;
+    color: ${colors.dark};
   }
 `;

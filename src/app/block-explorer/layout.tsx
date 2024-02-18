@@ -1,3 +1,4 @@
+import getChains from "../../actions/getChains";
 import Search from "../../components/search";
 import Sidebar from "../../components/sidebar";
 import {
@@ -5,10 +6,15 @@ import {
   TableContainer,
 } from "../../styles/block-explorer-layout.styles";
 
-const BlockExplorerLayout = ({ children }: { children: React.ReactNode }) => {
+const BlockExplorerLayout = async ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const chainData = await getChains();
   return (
     <Container>
-      <Sidebar />
+      <Sidebar chains={chainData} />
       <TableContainer>
         <Search />
         <h1>Latest Blocks</h1>

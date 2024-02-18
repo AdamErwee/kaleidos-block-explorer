@@ -1,11 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { styled } from "styled-components";
-
-export const Header = styled.div`
-  background-color: #121b2c;
-  height: 50px;
-  width: 100%;
-`;
+import colors from "./colors";
 
 const GlobalStyles = createGlobalStyle`
   html, body {
@@ -21,6 +16,27 @@ const GlobalStyles = createGlobalStyle`
     background-color: yellow;
     font-family: sans-serif;
   }
+
+  h1 {
+    margin: 0 0 30px 0;
+    color: ${colors.primary};
+  }
+`;
+
+export const Header = styled.div`
+  background-color: #121b2c;
+  height: 50px;
+  width: 100%;
+`;
+
+export const MainText = styled.span`
+  font-weight: bold;
+  color: ${colors.primary};
+`;
+
+export const SubText = styled.span`
+  font-weight: bold;
+  color: ${colors.dark};
 `;
 
 export default GlobalStyles;
