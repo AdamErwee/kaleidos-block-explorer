@@ -8,3 +8,11 @@ export interface ChainInfo {
   currencyPair: string; // Example: 'BTC-USD'
   currentPrice?: number;
 }
+
+export interface LatestBlockData {
+  height: number;
+  hash: string;
+  minedTime: string;
+  miner: string;
+  size: string;
+}

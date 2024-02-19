@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { CHAINS } from "../../../constants/chains";
 import getLatestBlocks from "../../../api/getLatestBlocks";
+import Table from "../../../components/latest-blocks-table";
+import { LatestBlockData } from "../../../types";
 
 const LatestBlocks = () => {
   const pathname = usePathname();
-  const router = useRouter();
-  console.log("router: ", router);
-  const [latestBlocks, setLatestBlocks] = useState<any[]>([]); // Assuming the type of latestBlocks is an array of any
+  const [latestBlocks, setLatestBlocks] = useState<LatestBlockData[]>([]);
   console.log("latestBlocks: ", latestBlocks);
 
   useEffect(() => {
@@ -32,7 +32,24 @@ const LatestBlocks = () => {
     fetchLatestBlocks();
   }, [pathname]);
 
-  return <h1>Table</h1>; // Render your table using the latestBlocks state
+  const data = [
+    {
+      id: 1,
+      name: "Block 1",
+      mined: "2023-12-25 12:00:00",
+      miner: "SlushPool",
+      size: 500,
+    },
+    {
+      id: 2,
+      name: "Block 2",
+      mined: "2023-12-26 12:00:00",
+      miner: "AntPool",
+      size: 600,
+    },
+  ];
+
+  return <Table data={latestBlocks} />;
 };
 
 export default LatestBlocks;

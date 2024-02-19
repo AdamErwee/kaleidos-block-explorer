@@ -1,10 +1,34 @@
 import axios from "axios";
+import { LatestBlockData } from "../types";
 
-const getLatestBlocks = async (chain: string | undefined): Promise<any[]> => {
+const calculateTimeDifference = (timeString: string): string => {
+  const currentTime = new Date();
+  const pastTime = new Date(timeString);
+
+  const timeDifference = Math.abs(currentTime.getTime() - pastTime.getTime());
+
+  const minutes = Math.floor(timeDifference / (1000 * 60));
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) {
+    return `${days} day${days > 1 ? "s" : ""}`;
+  } else if (hours > 0) {
+    return `${hours} hour${hours > 1 ? "s" : ""}`;
+  } else {
+    return `${minutes} minute${minutes > 1 ? "s" : ""}`;
+  }
+};
+
+const getLatestBlocks = async (
+  chain: string | null | undefined
+): Promise<LatestBlockData[]> => {
   if (!chain) {
     return [];
   }
+
   console.log("chain: ", chain);
+
   try {
     const response = await axios.get<any>(
       `https://api.blockchair.com/${chain}/blocks?limit=15`
@@ -13,23 +37,31 @@ const getLatestBlocks = async (chain: string | undefined): Promise<any[]> => {
     console.log("response: ", response.data.data.length);
     console.log("response: ", response.data.data[0]);
 
-    if (response.data && Array.isArray(response.data)) {
-      // Generally this response is sorted by height, here I'm just making sure that this is the case
-      const heightSortedBlocks = response.data.sort(
-        (a: any, b: any) => b.height - a.height
+    const { data: raw } = response?.data;
+
+    if (raw) {
+      const latestBlocksData = raw.map(
+        ({ id, hash, time, miner, guessed_miner, size }) => {
+          const minedTime = calculateTimeDifference(time);
+
+          return {
+            height: id,
+            hash,
+            minedTime,
+            miner: miner || guessed_miner, // Differs for Ethereum vs Bitcoin/Bitcoin Cash
+            size: `${size} bytes`,
+          };
+        }
       );
 
-      // For now I'm limiting the displayed amount to 15 (seems sufficient for now)
-      const minLatestBlocks = heightSortedBlocks.slice(0, 15);
+      console.log("latestBlocksData: ", latestBlocksData);
 
-      return minLatestBlocks;
+      return latestBlocksData;
     } else {
-      // Return an empty array if no blocks are found
       return [];
     }
   } catch (error) {
-    // Handle errors if any
-    console.error("Error fetching blocks for day:", error);
+    console.error("Error fetching latest blocks:", error);
     throw error;
   }
 };
