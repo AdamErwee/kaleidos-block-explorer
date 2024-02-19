@@ -11,21 +11,28 @@ export const TableMain = styled.table`
 export const TableHead = styled.thead`
   font-size: 15px;
   font-weight: bold;
-  color: ${colors.dark};
 `;
 
 export const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: #dddddd;
-  }
+  width: 100%;
 `;
 
-export const TableData = styled.td<{ color?: string }>`
+export const TableData = styled.td<{
+  color?: string;
+  readonly $isClickable?: boolean;
+}>`
   border: none;
-  font-size: 13px;
-  max-width: 300px;
+  max-width: 200px;
+  padding: 10px;
+  border-bottom: 1px solid ${colors.light};
+
   overflow: hidden;
   text-overflow: ellipsis;
+
+  font-size: 13px;
   color: ${({ color }) => color || colors.primary};
-  padding: 10px;
+
+  &:hover {
+    cursor: ${({ $isClickable }) => $isClickable && "pointer"};
+  }
 `;

@@ -13,6 +13,9 @@ const GlobalStyles = createGlobalStyle`
   body {
     display: flex;
     flex-direction: column;
+    min-width: 1050px;
+    overflow-x: auto;
+
     font-family: sans-serif;
   }
 
