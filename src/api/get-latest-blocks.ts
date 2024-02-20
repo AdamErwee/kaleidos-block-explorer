@@ -5,8 +5,6 @@ import calculateTimeDifference from "../actions/calculate-time-difference";
 const getLatestBlocks = async (
   chain: string | null | undefined
 ): Promise<LatestBlockData[]> => {
-  console.log("HERE");
-
   if (!chain) {
     return [];
   }

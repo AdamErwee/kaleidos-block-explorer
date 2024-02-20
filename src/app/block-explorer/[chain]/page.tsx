@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { CHAINS } from "../../../constants/chains";
-import getLatestBlocks from "../../../api/getLatestBlocks";
 import Table from "../../../components/latest-blocks-table";
 import { LatestBlockData } from "../../../types";
+import getLatestBlocks from "../../../api/get-latest-blocks";
 
 const LatestBlocks = () => {
   const pathname = usePathname();
   const [latestBlocks, setLatestBlocks] = useState<LatestBlockData[]>([]);
-  console.log("latestBlocks: ", latestBlocks);
 
   useEffect(() => {
     const activeChain = CHAINS.find(({ symbol }) =>
@@ -32,7 +31,7 @@ const LatestBlocks = () => {
     fetchLatestBlocks();
   }, [pathname]);
 
-  return <Table data={latestBlocks} />;
+  return <Table data={latestBlocks} isLoading={latestBlocks.length === 0} />;
 };
 
 export default LatestBlocks;

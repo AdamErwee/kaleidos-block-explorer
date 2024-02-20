@@ -1,4 +1,4 @@
-import getChains from "../../api/getChainPrices";
+import getChainPrices from "../../api/get-chain-prices";
 import Search from "../../components/search";
 import Sidebar from "../../components/sidebar";
 import {
@@ -11,7 +11,7 @@ const BlockExplorerLayout = async ({
 }: {
   children: React.ReactNode;
 }) => {
-  const chainData = await getChains();
+  const chainData = await getChainPrices();
   return (
     <Container>
       <Sidebar chains={chainData} />

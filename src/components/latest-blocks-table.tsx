@@ -1,3 +1,5 @@
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import colors from "../styles/colors";
 import {
   TableData,
@@ -24,9 +26,10 @@ const columns: LatestBlockTableColumn[] = [
 
 interface TableProps {
   data: LatestBlockData[];
+  isLoading: boolean;
 }
 
-const LatestBlocksTable: React.FC<TableProps> = ({ data }) => {
+const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
   return (
     <TableMain>
       <TableHead>
@@ -39,19 +42,29 @@ const LatestBlocksTable: React.FC<TableProps> = ({ data }) => {
         </TableRow>
       </TableHead>
       <tbody>
-        {data.map((row, index) => (
-          <TableRow key={index}>
-            {columns.map(({ key, isClickable }) => (
-              <TableData
-                key={key.toString()}
-                $isClickable={isClickable}
-                color={isClickable ? colors.link : ""}
-              >
-                {row[key]}
+        {!isLoading ? (
+          data.map((row, index) => (
+            <TableRow key={index}>
+              {columns.map(({ key, isClickable }) => (
+                <TableData
+                  key={key.toString()}
+                  $isClickable={isClickable}
+                  color={isClickable ? colors.link : ""}
+                >
+                  {row[key]}
+                </TableData>
+              ))}
+            </TableRow>
+          ))
+        ) : (
+          <TableRow>
+            {columns.map(() => (
+              <TableData>
+                <Skeleton />
               </TableData>
             ))}
           </TableRow>
-        ))}
+        )}
       </tbody>
     </TableMain>
   );

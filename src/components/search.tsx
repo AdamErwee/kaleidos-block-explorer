@@ -17,7 +17,10 @@ const Search: React.FC<SearchProps> = (props) => {
     <SearchContainer>
       <InputContainer>
         <FaSearch />
-        <Input placeholder="Search for block by 'Hash'" />
+        <Input
+          id="hash-search-input"
+          placeholder="Search for block by 'Hash'"
+        />
       </InputContainer>
       <Button onClick={() => console.log("Clicked Search")} text="Search" />
     </SearchContainer>
