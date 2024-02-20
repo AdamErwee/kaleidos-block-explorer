@@ -2,17 +2,33 @@ import axios from "axios";
 import { LatestBlockData } from "../types";
 import calculateTimeDifference from "../actions/calculate-time-difference";
 
-const getLatestBlocks = async (
-  chain: string | null | undefined
-): Promise<LatestBlockData[]> => {
+interface GetLatestBlocksProps {
+  chain: string;
+  searchParam: string;
+}
+
+const getLatestBlocks = async ({
+  chain,
+  searchParam,
+}: GetLatestBlocksProps): Promise<LatestBlockData[]> => {
   if (!chain) {
     return [];
   }
 
   try {
-    const response = await axios.get<any>(
-      `https://api.blockchair.com/${chain}/blocks?limit=15`
-    );
+    let response;
+    if (!searchParam) {
+      response = await axios.get<any>(
+        `https://api.blockchair.com/${chain}/blocks?limit=15`
+      );
+    } else {
+      // https://api.blockchair.com/bitcoin/raw/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
+      response = await axios.get<any>(
+        `https://api.blockchair.com/bitcoin/blocks?q=hash(hello)`
+      );
+
+      console.log("response: ", response);
+    }
 
     const { data: raw } = response?.data;
 

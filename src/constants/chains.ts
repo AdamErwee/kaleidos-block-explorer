@@ -11,6 +11,7 @@ export const CHAINS: ChainInfo[] = [
     apiReference: "bitcoin",
     icon: bitcoinIcon,
     currencyPair: "BTC-USD",
+    searchable: true,
   },
   {
     name: "Ethereum",

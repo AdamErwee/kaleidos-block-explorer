@@ -58,8 +58,8 @@ const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
           ))
         ) : (
           <TableRow>
-            {columns.map(() => (
-              <TableData>
+            {columns.map(({ key }) => (
+              <TableData key={key}>
                 <Skeleton />
               </TableData>
             ))}
