@@ -32,23 +32,6 @@ const LatestBlocks = () => {
     fetchLatestBlocks();
   }, [pathname]);
 
-  const data = [
-    {
-      id: 1,
-      name: "Block 1",
-      mined: "2023-12-25 12:00:00",
-      miner: "SlushPool",
-      size: 500,
-    },
-    {
-      id: 2,
-      name: "Block 2",
-      mined: "2023-12-26 12:00:00",
-      miner: "AntPool",
-      size: 600,
-    },
-  ];
-
   return <Table data={latestBlocks} />;
 };
 
