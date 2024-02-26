@@ -1,10 +1,19 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { LatestBlockData } from "../types";
 import calculateTimeDifference from "../actions/calculate-time-difference";
 
 interface GetLatestBlocksProps {
   chain: string;
-  searchParam: string;
+  searchParam?: string;
+}
+
+interface BlockChairResponse {
+  id: number;
+  hash: string;
+  time: string;
+  miner: string;
+  guessed_miner: string;
+  size: number;
 }
 
 const getLatestBlocks = async ({
@@ -16,21 +25,14 @@ const getLatestBlocks = async ({
   }
 
   try {
-    let response;
-    if (!searchParam) {
-      response = await axios.get<any>(
-        `https://api.blockchair.com/${chain}/blocks?limit=30`
-      );
-    } else {
-      // https://api.blockchair.com/bitcoin/raw/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
-      response = await axios.get<any>(
-        `https://api.blockchair.com/bitcoin/blocks?q=hash(000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a111111)`
-      );
+    const url = searchParam
+      ? `https://api.blockchair.com/${chain}/blocks?q=hash(${searchParam})`
+      : `https://api.blockchair.com/${chain}/blocks?limit=15`;
 
-      console.log("response: ", response);
-    }
+    const response: AxiosResponse<{ data: BlockChairResponse[] }> =
+      await axios.get(url);
 
-    const { data: raw } = response?.data;
+    const { data: raw } = response.data;
 
     if (raw) {
       const latestBlocksData = raw.map(
@@ -41,7 +43,7 @@ const getLatestBlocks = async ({
             height: id,
             hash,
             minedTime,
-            miner: miner || guessed_miner, // Differs for Ethereum vs Bitcoin/Bitcoin Cash
+            miner: miner || guessed_miner,
             size: `${size} bytes`,
           };
         }

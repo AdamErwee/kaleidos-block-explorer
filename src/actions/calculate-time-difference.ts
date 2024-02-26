@@ -1,6 +1,6 @@
 const calculateTimeDifference = (timeString: string): string => {
   const currentTime = new Date();
-  const pastTime = new Date(timeString);
+  const pastTime = new Date(`${timeString}Z`); // Ensures that timeString is in UTC time
 
   const timeDifference = Math.abs(currentTime.getTime() - pastTime.getTime());
 

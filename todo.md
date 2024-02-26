@@ -10,3 +10,8 @@ page.tsx:13
 }
 
 5. Perhaps using NOWNodes instead of blockchair.com?
+6. Get rid of all the console.logs
+7. optimize the get-latest-blocks script
+8. Add 'x' to search with clear functionality
+9. Add some comments for readability
+10. Add some error handling for when data is returned as wrong or empty. So that the table shows "No data for"...when the user changes the URL

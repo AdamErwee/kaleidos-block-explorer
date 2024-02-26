@@ -17,8 +17,6 @@ const LatestBlocks = () => {
   const searchParam = params.get("search");
   const activeChain = CHAINS.find(({ symbol }) => pathname.includes(symbol));
 
-  console.log("searchParam: ", searchParam);
-
   useEffect(() => {
     const fetchLatestBlocks = async () => {
       if (activeChain) {

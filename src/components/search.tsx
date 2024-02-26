@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import {
   Input,
@@ -16,10 +16,16 @@ const BitcoinHashSearch: React.FC = () => {
 
   const router = useRouter();
   const pathname = usePathname();
+  const params = useSearchParams();
+  const searchParam = params.get("search");
+
+  useEffect(() => {
+    if (searchParam) {
+      setSearchValue(searchParam);
+    }
+  }, []);
 
   const handleOnClick = () => {
-    console.log("valid: ", valid);
-
     if (valid && searchValue.length !== 64) {
       console.log("searchValue.length: ", searchValue.length);
       setValid(false);
@@ -44,6 +50,7 @@ const BitcoinHashSearch: React.FC = () => {
           id="hash-search-input"
           placeholder="Search for block by 'Hash'"
           $isValid={valid}
+          value={searchValue}
           onChange={(e) => {
             setSearchValue(e.target.value);
             if (!valid) {
