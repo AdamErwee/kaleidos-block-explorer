@@ -7,11 +7,6 @@ interface InputProps {
   readonly $isValid?: boolean;
 }
 
-export const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -41,11 +36,4 @@ export const Input = styled.input<InputProps>`
   &::placeholder {
     color: ${colors.dark};
   }
-`;
-
-export const ErrorMessage = styled.p`
-  margin: 0;
-  padding: 10px 0;
-  font-size: 13px;
-  color: ${colors.error};
 `;

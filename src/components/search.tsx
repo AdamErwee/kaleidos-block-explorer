@@ -4,10 +4,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import {
-  ErrorMessage,
   Input,
   InputContainer,
-  MainContainer,
   SearchContainer,
 } from "../styles/search.styles";
 import Button from "./button";
@@ -39,28 +37,23 @@ const BitcoinHashSearch: React.FC = () => {
   };
 
   return (
-    <MainContainer>
-      <SearchContainer>
-        <InputContainer $isValid={valid}>
-          <FaSearch />
-          <Input
-            id="hash-search-input"
-            placeholder="Search for block by 'Hash'"
-            $isValid={valid}
-            onChange={(e) => {
-              setSearchValue(e.target.value);
-              if (!valid) {
-                setValid(true); // This allows the user to try again on valid hash entry
-              }
-            }}
-          />
-        </InputContainer>
-        <Button onClick={handleOnClick} text="Search" />
-      </SearchContainer>
-      <ErrorMessage>
-        {!valid ? "Hash should be 64 characters long" : " "}
-      </ErrorMessage>
-    </MainContainer>
+    <SearchContainer>
+      <InputContainer $isValid={valid}>
+        <FaSearch />
+        <Input
+          id="hash-search-input"
+          placeholder="Search for block by 'Hash'"
+          $isValid={valid}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+            if (!valid) {
+              setValid(true); // This allows the user to try again on valid hash entry
+            }
+          }}
+        />
+      </InputContainer>
+      <Button onClick={handleOnClick} text="Search" />
+    </SearchContainer>
   );
 };
 
