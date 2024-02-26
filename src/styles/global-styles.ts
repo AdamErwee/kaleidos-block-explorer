@@ -5,7 +5,6 @@ import colors from "./colors";
 const GlobalStyles = createGlobalStyle`
   html, body {
     box-sizing: border-box;
-    height: 100%;
     margin: 0;
     padding: 0;
   }
@@ -15,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     min-width: 1050px;
     overflow-x: auto;
-
+    overflow-y: auto;
     font-family: sans-serif;
   }
 

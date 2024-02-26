@@ -32,7 +32,7 @@ const LatestBlocks = () => {
           setLatestBlocks(blocks);
         } catch (error) {
           console.error("Error fetching latest blocks:", error);
-          setLatestBlocks([]); // Reset blocks in case of error
+          setLatestBlocks([]); // Reset blocks in case of error // TODO:
         }
       }
     };

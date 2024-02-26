@@ -2,12 +2,11 @@
 
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const LayoutContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
   margin: 20px 150px 0px 150px;
-  background-color: white;
 `;
 
 export const TableContainer = styled.div`

@@ -1,6 +1,6 @@
 import getChainPrices from "../../api/get-chain-prices";
 import Sidebar from "../../components/sidebar";
-import { Container } from "../../styles/block-explorer-layout.styles";
+import { LayoutContainer } from "../../styles/block-explorer-layout.styles";
 
 const BlockExplorerLayout = async ({
   children,
@@ -9,10 +9,10 @@ const BlockExplorerLayout = async ({
 }) => {
   const chainData = await getChainPrices();
   return (
-    <Container>
+    <LayoutContainer>
       <Sidebar chains={chainData} />
       {children}
-    </Container>
+    </LayoutContainer>
   );
 };
 

@@ -17,3 +17,28 @@ export interface LatestBlockData {
   miner: string;
   size: string;
 }
+
+interface BlockTransaction {
+  // Define the structure of a transaction.
+  // This is a placeholder. You should adjust the interface based on the actual transaction structure.
+  hash: string;
+  // Add other fields as necessary based on the transaction structure.
+}
+
+interface BlockResponse {
+  hash: string;
+  ver: number;
+  prev_block: string;
+  mrkl_root: string;
+  time: number;
+  bits: number;
+  nonce: number;
+  n_tx: number;
+  size: number;
+  block_index: number;
+  main_chain: boolean;
+  height: number;
+  received_time: number;
+  relayed_by: string;
+  tx: BlockTransaction[]; // Assuming each transaction is an object. Adjust as necessary.
+}
