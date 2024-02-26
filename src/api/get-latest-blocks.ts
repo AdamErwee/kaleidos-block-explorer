@@ -19,7 +19,7 @@ const getLatestBlocks = async ({
     let response;
     if (!searchParam) {
       response = await axios.get<any>(
-        `https://api.blockchair.com/${chain}/blocks?limit=15`
+        `https://api.blockchair.com/${chain}/blocks?limit=30`
       );
     } else {
       // https://api.blockchair.com/bitcoin/raw/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f

@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { CHAINS } from "../../../constants/chains";
-import Table from "../../../components/latest-blocks-table";
-import { LatestBlockData } from "../../../types";
+import { useEffect, useState } from "react";
 import getLatestBlocks from "../../../api/get-latest-blocks";
+import Table from "../../../components/latest-blocks-table";
+import BitcoinHashSearch from "../../../components/search";
+import { CHAINS } from "../../../constants/chains";
+import { TableContainer } from "../../../styles/block-explorer-layout.styles";
+import { LatestBlockData } from "../../../types";
 
 const LatestBlocks = () => {
   const [latestBlocks, setLatestBlocks] = useState<LatestBlockData[]>([]);
@@ -13,11 +15,11 @@ const LatestBlocks = () => {
   const pathname = usePathname();
   const params = useSearchParams();
   const searchParam = params.get("search");
+  const activeChain = CHAINS.find(({ symbol }) => pathname.includes(symbol));
+
   console.log("searchParam: ", searchParam);
 
   useEffect(() => {
-    const activeChain = CHAINS.find(({ symbol }) => pathname.includes(symbol));
-
     const fetchLatestBlocks = async () => {
       if (activeChain) {
         try {
@@ -40,7 +42,13 @@ const LatestBlocks = () => {
     fetchLatestBlocks();
   }, [pathname, searchParam]);
 
-  return <Table data={latestBlocks} isLoading={latestBlocks.length === 0} />;
+  return (
+    <TableContainer>
+      {activeChain?.searchable && <BitcoinHashSearch />}
+      <h2>Latest Blocks</h2>
+      <Table data={latestBlocks} isLoading={latestBlocks.length === 0} />
+    </TableContainer>
+  );
 };
 
 export default LatestBlocks;

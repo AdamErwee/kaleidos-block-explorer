@@ -1,10 +1,6 @@
 import getChainPrices from "../../api/get-chain-prices";
-import BitcoinHashSearch from "../../components/search";
 import Sidebar from "../../components/sidebar";
-import {
-  Container,
-  TableContainer,
-} from "../../styles/block-explorer-layout.styles";
+import { Container } from "../../styles/block-explorer-layout.styles";
 
 const BlockExplorerLayout = async ({
   children,
@@ -15,11 +11,7 @@ const BlockExplorerLayout = async ({
   return (
     <Container>
       <Sidebar chains={chainData} />
-      <TableContainer>
-        <BitcoinHashSearch />
-        <h2>Latest Blocks</h2>
-        {children}
-      </TableContainer>
+      {children}
     </Container>
   );
 };
