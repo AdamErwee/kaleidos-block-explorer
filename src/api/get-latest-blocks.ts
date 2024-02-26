@@ -24,7 +24,7 @@ const getLatestBlocks = async ({
     } else {
       // https://api.blockchair.com/bitcoin/raw/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
       response = await axios.get<any>(
-        `https://api.blockchair.com/bitcoin/blocks?q=hash(hello)`
+        `https://api.blockchair.com/bitcoin/blocks?q=hash(000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a111111)`
       );
 
       console.log("response: ", response);

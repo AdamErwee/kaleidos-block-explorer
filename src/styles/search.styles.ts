@@ -3,6 +3,15 @@
 import styled from "styled-components";
 import colors from "./colors";
 
+interface InputProps {
+  readonly $isValid?: boolean;
+}
+
+export const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -10,19 +19,20 @@ export const SearchContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.div<InputProps>`
   display: flex;
   flex-direction: row;
   gap: 10px;
   width: 100%;
   padding: 10px 30px 10px 10px;
   background-color: ${colors.light};
-  border: 1px solid ${colors.light};
+  border: 1px solid
+    ${({ $isValid }) => (!$isValid ? colors.error : colors.light)};
   border-radius: 5px;
   color: ${colors.dark};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InputProps>`
   width: 100%;
   background: none;
   border: none;
@@ -31,4 +41,11 @@ export const Input = styled.input`
   &::placeholder {
     color: ${colors.dark};
   }
+`;
+
+export const ErrorMessage = styled.p`
+  margin: 0;
+  padding: 10px 0;
+  font-size: 13px;
+  color: ${colors.error};
 `;

@@ -5,6 +5,7 @@ const colors = {
   light: "#E6E7EF",
   dark: "#717784",
   link: "#0000EE",
+  error: "#FF0000",
 };
 
 export default colors;

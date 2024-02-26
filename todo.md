@@ -8,3 +8,5 @@ page.tsx:13
 4. Search props: interface SearchProps {
   // Define props here
 }
+
+5. Perhaps using NOWNodes instead of blockchair.com?
