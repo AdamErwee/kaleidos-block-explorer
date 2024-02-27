@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 import { BlockResponse } from "../../../../types";
 import getBlock from "../../../../api/get-block";
 import {
-  BlockInfoContainer,
+  BlockPageContainer,
   PageContainer,
-  TransactionsContainer,
+  TransactionsPageContainer,
 } from "../../../../styles/block-layout.styles";
+import BlockTransactions from "../../../../components/block-transactions";
 
 export default function BlockPage({
   params,
@@ -24,17 +25,26 @@ export default function BlockPage({
     getBlock(hash)
       .then((data) => setBlock(data))
       .catch((error) => console.error(error));
-  }, [hash]); // Depend on the hash to refetch if it changes
+  }, []);
 
   return (
     <PageContainer>
-      <BlockInfoContainer>
-        {!block ? <Skeleton /> : "Block Container"}
-      </BlockInfoContainer>
+      {!block ? (
+        <Skeleton containerClassName="flex-1" wrapper={BlockPageContainer} />
+      ) : (
+        <BlockPageContainer>Block Container</BlockPageContainer>
+      )}
       <h2>Transactions</h2>
-      <TransactionsContainer>
-        {!block ? <Skeleton /> : "Transactions Container"}
-      </TransactionsContainer>
+      {!block ? (
+        <Skeleton
+          containerClassName="flex-1"
+          wrapper={TransactionsPageContainer}
+        />
+      ) : (
+        <TransactionsPageContainer>
+          <BlockTransactions message="test" />
+        </TransactionsPageContainer>
+      )}
     </PageContainer>
   );
 }

@@ -16,3 +16,4 @@ page.tsx:13
 9. Add some comments for readability
 10. Add some error handling for when data is returned as wrong or empty. So that the table shows "No data for"...when the user changes the URL.
 11. Adjust searching to work as specified in the assessment
+12. Move files to correct folders (e.g. colors, styles registry)
