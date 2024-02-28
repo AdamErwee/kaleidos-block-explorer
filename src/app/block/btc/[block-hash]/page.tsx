@@ -3,14 +3,14 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
-import { BlockResponse } from "../../../../types";
+import { BlockInfoData } from "../../../../types";
 import getBlock from "../../../../api/get-block";
 import {
-  BlockPageContainer,
   PageContainer,
   TransactionsPageContainer,
 } from "../../../../styles/block-layout.styles";
 import BlockTransactions from "../../../../components/block-transactions";
+import BlockInfo from "../../../../components/block-info";
 
 export default function BlockPage({
   params,
@@ -18,8 +18,7 @@ export default function BlockPage({
   params: { "block-hash": string };
 }) {
   const hash = params["block-hash"];
-  const [block, setBlock] = useState<BlockResponse | null>(null);
-  console.log("block: ", block);
+  const [block, setBlock] = useState<BlockInfoData | null>(null);
 
   useEffect(() => {
     getBlock(hash)
@@ -29,11 +28,7 @@ export default function BlockPage({
 
   return (
     <PageContainer>
-      {!block ? (
-        <Skeleton containerClassName="flex-1" wrapper={BlockPageContainer} />
-      ) : (
-        <BlockPageContainer>Block Container</BlockPageContainer>
-      )}
+      <BlockInfo infoData={block} />
       <h2>Transactions</h2>
       {!block ? (
         <Skeleton
@@ -42,7 +37,7 @@ export default function BlockPage({
         />
       ) : (
         <TransactionsPageContainer>
-          <BlockTransactions message="test" />
+          {/* <BlockTransactions message="test" /> */}
         </TransactionsPageContainer>
       )}
     </PageContainer>

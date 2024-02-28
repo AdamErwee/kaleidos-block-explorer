@@ -20,11 +20,11 @@ export const InputContainer = styled.div<InputProps>`
   gap: 10px;
   width: 100%;
   padding: 10px 30px 10px 10px;
-  background-color: ${colors.light};
+  background-color: ${colors.light_grey};
   border: 1px solid
-    ${({ $isValid }) => (!$isValid ? colors.error : colors.light)};
+    ${({ $isValid }) => (!$isValid ? colors.error : colors.light_grey)};
   border-radius: 5px;
-  color: ${colors.dark};
+  color: ${colors.dark_grey};
 `;
 
 export const Input = styled.input<InputProps>`
@@ -34,6 +34,6 @@ export const Input = styled.input<InputProps>`
   outline: none;
 
   &::placeholder {
-    color: ${colors.dark};
+    color: ${colors.dark_grey};
   }
 `;

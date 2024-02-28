@@ -21,10 +21,9 @@ export const TableData = styled.td<{
   color?: string;
   readonly $isClickable?: boolean;
 }>`
-  border: none;
   max-width: 200px;
   padding: 10px;
-  border-bottom: 1px solid ${colors.light};
+  border-bottom: 1px solid ${colors.light_grey};
 
   overflow: hidden;
   text-overflow: ellipsis;

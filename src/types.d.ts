@@ -25,20 +25,66 @@ interface BlockTransaction {
   // Add other fields as necessary based on the transaction structure.
 }
 
-interface BlockResponse {
-  hash: string;
-  ver: number;
-  prev_block: string;
-  mrkl_root: string;
-  time: number;
+type Transaction = {
+  inputs: {
+    script: string;
+    prev_out: {
+      value: number;
+      spent: boolean;
+    };
+  }[];
+  out: {
+    value: number;
+    spent: boolean;
+  }[];
+};
+
+interface BlockResponseData {
   bits: number;
-  nonce: number;
-  n_tx: number;
-  size: number;
   block_index: number;
-  main_chain: boolean;
+  fee: number;
+  hash: string;
   height: number;
-  received_time: number;
-  relayed_by: string;
-  tx: BlockTransaction[]; // Assuming each transaction is an object. Adjust as necessary.
+  main_chain: boolean;
+  mrkl_root: string;
+  n_tx: number;
+  next_block: string;
+  nonce: number;
+  prev_block: string;
+  size: number;
+  time: number;
+  tx: Transaction[];
+  ver: number;
+  weight: number;
 }
+
+interface BlockInfoData {
+  hash: string;
+  confirmations: number;
+  timestamp: string; // Assuming string format for timestamp
+  height: number;
+  miner: string;
+  numberOfTransactions: string;
+  difficulty: string;
+  merkleRoot: string;
+  version: number;
+  bits: string;
+  weight: string;
+  size: string;
+  nonce: string;
+  transactionVolume: string;
+  blockReward: string;
+  feeReward: string;
+}
+
+interface MiningPool {
+  id: number;
+  name: string;
+  addresses: string[];
+  tags: string[];
+  link: string;
+}
+
+
+
+

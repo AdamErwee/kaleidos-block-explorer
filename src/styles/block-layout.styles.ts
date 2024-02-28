@@ -14,12 +14,6 @@ export const PageContainer = styled.div`
   width: 100%;
 `;
 
-export const BlockPageContainer = styled.div`
-  display: flex;
-  height: 700px;
-  margin: 10px;
-`;
-
 export const TransactionsPageContainer = styled.div`
   display: flex;
   height: 300px;

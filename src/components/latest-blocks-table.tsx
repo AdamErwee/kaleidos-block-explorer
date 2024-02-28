@@ -35,7 +35,7 @@ const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
       <TableHead>
         <TableRow>
           {columns.map(({ header }) => (
-            <TableData key={`${header}-header`} color={colors.dark}>
+            <TableData key={`${header}-header`} color={colors.dark_grey}>
               {header}
             </TableData>
           ))}

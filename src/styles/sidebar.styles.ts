@@ -27,11 +27,12 @@ export const Chain = styled.div<ChainProps>`
   align-items: center;
   padding: 10px;
   border-radius: 5px;
-  background-color: ${({ $activeChain }) => $activeChain && colors.light};
+  background-color: ${({ $activeChain }) => $activeChain && colors.light_grey};
 
   &:hover {
     cursor: pointer;
-    background-color: ${({ $activeChain }) => !$activeChain && colors.lightest};
+    background-color: ${({ $activeChain }) =>
+      !$activeChain && colors.lightest_grey};
   }
 `;
 

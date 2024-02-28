@@ -37,7 +37,7 @@ export const MainText = styled.span`
 
 export const SubText = styled.span`
   font-weight: bold;
-  color: ${colors.dark};
+  color: ${colors.dark_grey};
 `;
 
 export default GlobalStyles;

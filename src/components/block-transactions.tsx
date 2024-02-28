@@ -1,4 +1,3 @@
-import React from "react";
 import {
   TransactionCard,
   TransactionsContainer,
@@ -37,11 +36,10 @@ const testCards = [
 ];
 
 const BlockTransactions: React.FC<BlockTransactionsProps> = ({ message }) => {
-  console.log("message: ", message);
   return (
     <TransactionsContainer>
       {testCards.map((test) => {
-        return <TransactionCard />;
+        return <TransactionCard />; // TODO: add key
       })}
     </TransactionsContainer>
   );
