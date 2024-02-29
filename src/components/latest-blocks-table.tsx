@@ -49,7 +49,7 @@ const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
                 <TableData
                   key={key.toString()}
                   $isClickable={isClickable}
-                  color={isClickable ? colors.link : ""}
+                  color={isClickable ? colors.link_blue : ""}
                 >
                   {row[key]}
                 </TableData>

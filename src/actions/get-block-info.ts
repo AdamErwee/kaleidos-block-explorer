@@ -2,7 +2,10 @@ import axios from "axios";
 import { BlockInfoData, BlockResponseData } from "../types";
 import dayjs from "dayjs";
 import determineMiner from "./determine-miner";
-import determineTransactionVolume from "./determine-transaction-volume";
+import formatNumber from "./format-number";
+import determineTransactionVolumeAndReward from "./determine-transaction-volume-and-reward";
+import determineBlockVersion from "./determine-block-version";
+import calculateDifficulty from "./determine-block-difficulty";
 
 const getBlockInfo = async (
   referenceBlock: BlockResponseData
@@ -29,32 +32,37 @@ const getBlockInfo = async (
 
     const latestBlock = response.data;
 
-    const { transactionVolume, blockReward } = determineTransactionVolume({
-      transactions: tx,
-      fee,
-    });
+    const { transactionVolume, blockReward } =
+      determineTransactionVolumeAndReward({
+        transactions: tx,
+        fee,
+      });
 
     const feeReward = fee / 10 ** 8;
 
     return {
       hash: hash,
-      confirmations: latestBlock.height - height + 1,
+      confirmations: (latestBlock.height - height + 1).toLocaleString(),
       timestamp: dayjs.unix(time).format("YYYY-MM-DD HH:mm"),
       height: height,
       miner: determineMiner(referenceBlock),
-      numberOfTransactions: numberOfTransactions.toLocaleString(),
-      difficulty: referenceBlock.bits.toLocaleString(), // TODO: calculate the difficulty
+      numberOfTransactions: formatNumber(numberOfTransactions),
+      difficulty: calculateDifficulty(bits), // TODO: calculate the difficulty
       merkleRoot: mrkl_root,
-      version: ver,
-      bits: bits.toLocaleString(),
-      weight: `${weight.toLocaleString()} WU`,
-      size: `${size.toLocaleString()} bytes`,
-      nonce: nonce.toLocaleString(),
-      transactionVolume: `${transactionVolume.toLocaleString("en-US", {
-        maximumFractionDigits: 10,
+      version: determineBlockVersion(ver),
+      bits: formatNumber(bits),
+      weight: `${formatNumber(weight)} WU`,
+      size: `${formatNumber(size)} bytes`,
+      nonce: formatNumber(nonce),
+      transactionVolume: `${formatNumber(transactionVolume, {
+        options: { maximumFractionDigits: 8 },
       })} BTC`,
-      blockReward: `${blockReward.toLocaleString()} BTC`,
-      feeReward: `${feeReward.toLocaleString()} BTC`,
+      blockReward: `${formatNumber(blockReward, {
+        options: { minimumFractionDigits: 8 },
+      })} BTC`,
+      feeReward: `${formatNumber(feeReward, {
+        options: { maximumFractionDigits: 8 },
+      })} BTC`,
     };
   } catch (error) {
     console.error("Error fetching latest block information:", error);

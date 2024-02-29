@@ -25,17 +25,19 @@ interface BlockTransaction {
   // Add other fields as necessary based on the transaction structure.
 }
 
+
 type Transaction = {
   inputs: {
     script: string;
     prev_out: {
+      address: string;
       value: number;
-      spent: boolean;
     };
   }[];
   out: {
+    type: "coinbase" | "known" | "unknown";
+    address: string;
     value: number;
-    spent: boolean;
   }[];
 };
 
@@ -60,14 +62,14 @@ interface BlockResponseData {
 
 interface BlockInfoData {
   hash: string;
-  confirmations: number;
-  timestamp: string; // Assuming string format for timestamp
+  confirmations: string;
+  timestamp: string;
   height: number;
   miner: string;
   numberOfTransactions: string;
   difficulty: string;
   merkleRoot: string;
-  version: number;
+  version: string;
   bits: string;
   weight: string;
   size: string;
@@ -77,6 +79,24 @@ interface BlockInfoData {
   feeReward: string;
 }
 
+type InputOutputType = "coinbase" | "known" | "unknown";
+interface BlockTransactionData {
+  hash: string;
+  timeStamp: string;
+  fee: string;
+  totalOutputValue: string;
+  inputs: {
+    type: InputOutputType;
+    address: string;
+    value: string;
+  }[];
+  outputs: {
+    type: InputOutputType;
+    address: string;
+    value: string;
+  }[];
+}
+
 interface MiningPool {
   id: number;
   name: string;
@@ -84,6 +104,9 @@ interface MiningPool {
   tags: string[];
   link: string;
 }
+
+type CellType = "icon" | "header" | "address" | "hash";
+
 
 
 

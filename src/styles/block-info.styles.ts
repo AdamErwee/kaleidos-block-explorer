@@ -30,12 +30,14 @@ export const BlockPageContainer = styled.div`
 export const InfoRow = styled.div`
   display: flex;
   flex-direction: row;
-  font-size: 15px;
   border-bottom: 1px solid ${colors.light_grey};
   padding: 10px 0;
 `;
 
 export const InfoCard = styled.div<{ readonly $header?: boolean }>`
+  font-size: ${({ $header }) => ($header ? "13px" : "15px")};
+  font-weight: ${({ $header }) => $header && "600"};
+
   width: ${({ $header }) => ($header ? "30%" : "70%")};
   color: ${({ $header }) => ($header ? colors.dark_grey : colors.primary)};
 `;

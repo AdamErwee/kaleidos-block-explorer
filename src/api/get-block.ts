@@ -1,19 +1,29 @@
 "use client";
 
 import axios from "axios";
-import { BlockInfoData, BlockResponseData } from "../types";
+import {
+  BlockInfoData,
+  BlockResponseData,
+  BlockTransactionData,
+} from "../types";
 import getBlockInfo from "../actions/get-block-info";
+import getTransactions from "../actions/get-transactions";
 
-const getBlock = async (hash: string): Promise<BlockInfoData> => {
+interface BlockProps {
+  blockInfo: BlockInfoData;
+  blockTransactions: BlockTransactionData[];
+}
+
+const getBlock = async (hash: string): Promise<BlockProps> => {
   try {
     const response = await axios.get<BlockResponseData>(
       `https://blockchain.info/rawblock/${hash}`
     );
 
-    console.log("response: ", response.data);
+    const blockInfo = await getBlockInfo(response.data);
+    const blockTransactions = getTransactions(response.data.tx);
 
-    const blockInfo = getBlockInfo(response.data);
-    return blockInfo;
+    return { blockInfo, blockTransactions };
   } catch (error) {
     console.error(`Error fetching block data: ${error}`);
     throw error;

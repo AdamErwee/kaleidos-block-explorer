@@ -19,6 +19,5 @@ export const TransactionsPageContainer = styled.div`
   height: 300px;
   overflow-y: auto;
   margin: 10px;
-  background-color: lightblue;
 `;
 

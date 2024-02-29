@@ -10,7 +10,6 @@ import Image from "next/image";
 import bitcoinIcon from "../../public/icons/bitcoin.png";
 import colors from "../styles/colors";
 import { BlockInfoData } from "../types";
-import { ReactNode } from "react";
 
 interface BlockInfoDataProps {
   infoData: BlockInfoData | null;
@@ -35,6 +34,8 @@ const headers: { key: keyof BlockInfoData; header: string }[] = [
   { key: "feeReward", header: "Fee Reward" },
 ];
 
+// TODO: add container and replace <></>
+// TODO: Add Clipboard to hash row and add copy functionality
 const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
   return (
     <>
@@ -52,7 +53,7 @@ const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
         {!infoData ? (
           <Skeleton />
         ) : (
-          " Block at depth CHAIN_HEIGHT in Bitcoin blockchain"
+          `Block at depth ${infoData.height} in Bitcoin blockchain`
         )}
       </BlockSubHeader>
       <BlockPageContainer>

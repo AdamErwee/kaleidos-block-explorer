@@ -27,7 +27,6 @@ const BitcoinHashSearch: React.FC = () => {
 
   const handleOnClick = () => {
     if (valid && searchValue.length !== 64) {
-      console.log("searchValue.length: ", searchValue.length);
       setValid(false);
       return;
     }

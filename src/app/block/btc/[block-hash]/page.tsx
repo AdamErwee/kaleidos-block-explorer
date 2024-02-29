@@ -3,7 +3,7 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, useState } from "react";
-import { BlockInfoData } from "../../../../types";
+import { BlockInfoData, BlockTransactionData } from "../../../../types";
 import getBlock from "../../../../api/get-block";
 import {
   PageContainer,
@@ -19,10 +19,16 @@ export default function BlockPage({
 }) {
   const hash = params["block-hash"];
   const [block, setBlock] = useState<BlockInfoData | null>(null);
+  const [transactions, setTransactions] = useState<
+    BlockTransactionData[] | null
+  >(null);
 
   useEffect(() => {
     getBlock(hash)
-      .then((data) => setBlock(data))
+      .then(({ blockInfo, blockTransactions }) => {
+        setBlock(blockInfo);
+        setTransactions(blockTransactions);
+      })
       .catch((error) => console.error(error));
   }, []);
 
@@ -37,7 +43,7 @@ export default function BlockPage({
         />
       ) : (
         <TransactionsPageContainer>
-          {/* <BlockTransactions message="test" /> */}
+          <BlockTransactions transactions={transactions} />
         </TransactionsPageContainer>
       )}
     </PageContainer>
