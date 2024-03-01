@@ -1,24 +1,19 @@
 # Block Explorer App
 
-Block Explorer is a web application built with Next.js, TypeScript, React, and styled-components. It allows users to explore the latest blocks of various cryptocurrencies and view detailed information about individual blocks.
+My Block Explorer is a web application built with Next.js, TypeScript, React, and styled-components. It allows users to explore the latest blocks of various cryptocurrencies and view detailed information and transactions about individual blocks.
 
 ## Features
 
 ### Home Screen (Block Explorer):
 
 - Left sidebar with links for Bitcoin, Ethereum, and Bitcoin Cash.
-- Table displaying the latest blocks for the selected cryptocurrency.
+- Table displaying the latest blocks for the selected cryptocurrency. Has functionality to click on a hash in the table, navigating to the Block Screen.
+- Search with functionality to search and fetch a block by hash. 
 
 ### Block Screen:
 
 - Detailed information about individual blocks, including hash, confirmations, timestamp, height, miner, number of transactions, difficulty, merkle root, version, etc.
 - Transactions section showing transaction details (hash, from address, to address(s), and amounts) for the selected block.
-
-## Data Source
-
-Utilizes Blockchair's API for fetching blockchain data.
-
-Example endpoint for fetching latest blocks: `https://api.blockchair.com/${chain}/blocks?limit=15`.
 
 ## Installation
 
@@ -30,29 +25,35 @@ Example endpoint for fetching latest blocks: `https://api.blockchair.com/${chain
 ## Project Structure
 
 - **src/**: Contains the source code of the application.
-  - **api.ts**: File for API utility functions.
-  - **app/**: Contains the main application components.
-    - **block-explorer/**: Contains the Home Screen components.
-      - **page.tsx**: Main page component for the Block Explorer.
-    - **block-screen/**: Contains the Block Screen components.
-      - **page.tsx**: Main page component for the Block Screen.
-      - **layout.tsx**: Layout component shared across pages.
-    - **transactions/**: Contains components for transaction details.
-      - **page.tsx**: Main page component for transaction details.
+  - **actions/**: File for action functions used throughout application.
+  - **api/**: Folder for API utility functions.
+  - **app/**: Contains the main application layout & page structure.
+    - **block-explorer/**: Contains the Home Screen page.
+    - **block/**: Contains the Block Screen page.
   - **components/**: Contains reusable React components.
+  - **constants/**: Contains constants (e.g. chains).
+  - **lib/**: Contains library files (e.g. style registry).
   - **styles/**: Contains styled-components styles.
-  - **lib/**: Contains library files.
-- **next-env.d.ts**: TypeScript declaration file for Next.js.
+  - **types.d.ts**: Contains global types.
+- **CREDITS.md**: Contains noteworthy credits.
+- **next-env.d.ts**: TypeScript declaration file for Next.js (part of next.js install).
 - **package-lock.json**: Lock file for npm dependencies.
 - **package.json**: Manages project dependencies and scripts.
 - **tsconfig.json**: TypeScript configuration file.
 
-## Development Process
+## API Usage
 
-- Initial setup includes installing necessary dependencies (Next.js, TypeScript, React, styled-components) and setting up project structure.
-- Implementation of components such as Home Screen, Left Sidebar, and LatestBlocksTable.
-- Data fetching from Blockchair's API integrated into the LatestBlocksTable component to populate the table with latest block data.
-- Clicking on a block hash triggers fetching and displaying additional block details in the Block Screen.
+```Blockchair API```
+
+- Used to fetch latest blocks. Provides endpoints for BTC, ETH and BCH and is relatively fast.
+- Can replace Blockchain.com API for faster calls and less response data manipulation.
+
+Example endpoint for fetching latest blocks: `https://api.blockchair.com/${chain}/blocks?limit=15`.
+
+```Blockchain.com API```
+
+- Used to fetch single latest block, single block and transactions information. Only available on BTC blocks/transactions and relatively slow. Requires extensive response data manipulation, but used to showcase skills determining certain block information (e.g. difficulty, transaction volume, miner etc.)
+
 
 ## Contributors
 
