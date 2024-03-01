@@ -1,5 +1,6 @@
 "use client";
 
+// This file is created and populated as described by styled-components when the library is used within next.js
 import React, { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";

@@ -3,6 +3,7 @@ interface LocaleStringOptions {
   options?: Intl.NumberFormatOptions;
 }
 
+// Formats numbers to string using toLocalString. Basically used to reduce duplication of code
 const formatNumber = (
   unformattedNumber: number,
   { locale = "en-US", options = {} }: LocaleStringOptions = {}

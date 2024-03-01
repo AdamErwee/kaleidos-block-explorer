@@ -1,5 +1,9 @@
 import dayjs from "dayjs";
-import { BlockTransactionData, InputOutputType } from "../types";
+import {
+  BlockTransactionData,
+  InputOutputData,
+  InputOutputType,
+} from "../types";
 import formatNumber from "./format-number";
 
 interface FormattedInputOutput {
@@ -43,7 +47,7 @@ const getInputOutput = ({
   });
 };
 
-const getTotalOutputValue = (outputArray): string => {
+const getTotalOutputValue = (outputArray: { value: number }[]): string => {
   let totalOutputValue = 0;
 
   outputArray.forEach(({ value }) => {
