@@ -31,7 +31,13 @@ const Sidebar: React.FC<SidebarProps> = ({ chains }) => {
               $activeChain={pathname.includes(symbol)}
               onClick={() => router.push(`/block-explorer/${symbol}`)}
             >
-              <Image src={icon} alt={`${name}-icon`} width={40} height={40} />
+              <Image
+                src={icon}
+                alt={`${name}-icon`}
+                width={40}
+                height={40}
+                priority // Added this due to a warning on the size. This indicates to Next.js that the image is important for the initial rendering of the page, and it should be prioritized for loading.
+              />
               <ChainTextContainer>
                 <MainText>{name}</MainText>
                 <SubText>${currentPrice}</SubText>
