@@ -12,6 +12,7 @@ import colors from "../styles/colors";
 import { BlockInfoData } from "../types";
 import { toast } from "react-toastify";
 import { FaClipboard } from "react-icons/fa";
+import { Fragment } from "react";
 
 interface BlockInfoDataProps {
   infoData: BlockInfoData | null;
@@ -36,13 +37,12 @@ const headers: { key: keyof BlockInfoData; header: string }[] = [
   { key: "feeReward", header: "Fee Reward" },
 ];
 
-// TODO: add container and replace <></>
 const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
   return (
-    <>
+    <Fragment>
       <BlockHeader>
         <Image
-          src={bitcoinIcon} // TODO: Make applicable to all chains. Currently only available for Bitcoin.
+          src={bitcoinIcon} // TODO: Future feature - Make applicable to all chains. Currently only available for Bitcoin.
           alt={`bitcoin-icon`}
           width={40}
           height={40}
@@ -84,7 +84,7 @@ const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
           );
         })}
       </BlockPageContainer>
-    </>
+    </Fragment>
   );
 };
 
