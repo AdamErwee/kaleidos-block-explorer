@@ -10,6 +10,7 @@ import {
   SearchContainer,
 } from "../styles/search.styles";
 import Button from "./button";
+import { toast } from "react-toastify";
 
 const BitcoinHashSearch: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -22,13 +23,23 @@ const BitcoinHashSearch: React.FC = () => {
 
   useEffect(() => {
     if (searchParam) {
+      if (searchParam.length !== 64) {
+        toast.warn(`I can't let you just break things, mkay?`, {
+          toastId: "searchParam-length-warn",
+        });
+        return;
+      }
       setSearchValue(searchParam);
     }
-  }, []);
+  }, [searchParam]);
 
   const handleOnClick = () => {
-    if (valid && searchValue.length !== 64) {
+    if (searchValue.length !== 64) {
       setValid(false);
+      toast.warn(
+        `Hey, bud. I need 64 characters for things to work, but you only got ${searchValue.length} so far. See the problem?`,
+        { toastId: "search-length-warn" }
+      );
       return;
     }
 

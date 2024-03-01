@@ -50,7 +50,10 @@ const LatestBlocks = () => {
       if (activeChain) {
         try {
           const { apiReference, searchable } = activeChain;
-          const searchQuery = searchable && searchParam ? searchParam : "";
+          const searchQuery =
+            searchable && searchParam && searchParam.length === 64
+              ? searchParam
+              : "";
 
           const blocks = await getLatestBlocks({
             chain: apiReference,
@@ -71,11 +74,7 @@ const LatestBlocks = () => {
     <TableContainer>
       {activeChain?.searchable && <BitcoinHashSearch />}
       <h2>Latest Blocks</h2>
-      <Table
-        data={latestBlocks}
-        isLoading={latestBlocks.length === 0}
-        activeChain={activeChain}
-      />
+      <Table data={latestBlocks} isLoading={latestBlocks.length === 0} />
     </TableContainer>
   );
 };

@@ -28,14 +28,9 @@ const columns: LatestBlockTableColumn[] = [
 interface TableProps {
   data: LatestBlockData[];
   isLoading: boolean;
-  activeChain?: ChainInfo;
 }
 
-const LatestBlocksTable: React.FC<TableProps> = ({
-  data,
-  isLoading,
-  activeChain,
-}) => {
+const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
   const router = useRouter();
 
   return (
@@ -50,7 +45,7 @@ const LatestBlocksTable: React.FC<TableProps> = ({
         </TableRow>
       </TableHead>
       <tbody>
-        {!isLoading ? (
+        {!isLoading && data.length !== 0 ? (
           data?.map((row, index) => (
             <TableRow key={index}>
               {columns.map(({ key, isClickable }) => (
