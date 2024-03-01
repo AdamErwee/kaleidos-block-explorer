@@ -7,7 +7,11 @@ import {
   TransactionCard,
   TransactionsContainer,
 } from "../styles/block-transactions.styles";
-import { BlockTransactionData, InputOutputType } from "../types";
+import {
+  BlockTransactionData,
+  InputOutputData,
+  InputOutputType,
+} from "../types";
 import colors from "../styles/colors.styles";
 
 interface BlockTransactionsProps {
@@ -20,7 +24,8 @@ const addressColorLookup: Record<InputOutputType, string> = {
   unknown: colors.primary,
 };
 
-const getInputOutput = (dataType, data) => {
+// This function reduces cognitive load downstream. It gets an array (input/output) and returns a row with the address and value with its relevant styling
+const getInputOutput = (dataType: string, data: InputOutputData[]) => {
   return data.map((item, index) => {
     const key = `${index}_${item.address}_${item.value}`;
     const iconColor =

@@ -42,22 +42,19 @@ type Transaction = {
   }[];
 };
 
+interface InputOutputData {
+  type: InputOutputType;
+  address: string;
+  value: string;
+}
 // The formatted Transactions data used on the Block Transactions component
 interface BlockTransactionData {
   hash: string;
   timeStamp: string;
   fee: string;
   totalOutputValue: string;
-  inputs: {
-    type: InputOutputType;
-    address: string;
-    value: string;
-  }[];
-  outputs: {
-    type: InputOutputType;
-    address: string;
-    value: string;
-  }[];
+  inputs: InputOutputData[];
+  outputs: InputOutputData[];
 }
 
 // Describes the type for a specific Block's data/response returned by blockchain.com's API
