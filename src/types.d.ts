@@ -1,8 +1,9 @@
 import { StaticImageData } from "next/image";
 
+export type ValidChain = "btc" | "eth" | "bch";
 export interface ChainInfo {
   name: string;
-  symbol: string;
+  symbol: ValidChain;
   apiReference: string;
   icon: StaticImageData;
   currencyPair: string; // Example: 'BTC-USD'
@@ -17,14 +18,6 @@ export interface LatestBlockData {
   miner: string;
   size: string;
 }
-
-interface BlockTransaction {
-  // Define the structure of a transaction.
-  // This is a placeholder. You should adjust the interface based on the actual transaction structure.
-  hash: string;
-  // Add other fields as necessary based on the transaction structure.
-}
-
 
 type Transaction = {
   inputs: {

@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "../styles/table.styles";
 
-import { LatestBlockData } from "../types";
+import { ChainInfo, LatestBlockData } from "../types";
 import { useRouter } from "next/navigation";
 
 interface LatestBlockTableColumn {
@@ -28,9 +28,14 @@ const columns: LatestBlockTableColumn[] = [
 interface TableProps {
   data: LatestBlockData[];
   isLoading: boolean;
+  activeChain?: ChainInfo;
 }
 
-const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
+const LatestBlocksTable: React.FC<TableProps> = ({
+  data,
+  isLoading,
+  activeChain,
+}) => {
   const router = useRouter();
 
   return (
@@ -54,7 +59,7 @@ const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
                   $isClickable={isClickable}
                   color={isClickable ? colors.link_blue : ""}
                   onClick={() => {
-                    // I added this if a developer ever accidentally adds 'isClickable' to another column, ensuring that erroneous navigation doesn't occur
+                    // I added this if a developer ever accidentally adds 'isClickable' to another column, ensuring that erroneous navigation doesn't occur. I could also use 'searchable' but this adds complexity and limitations for future use
                     if (isClickable && key === "hash") {
                       router.push(`/block/btc/${row[key]}`);
                     }

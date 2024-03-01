@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { LatestBlockData } from "../types";
 import calculateTimeDifference from "../actions/calculate-time-difference";
+import { toast } from "react-toastify";
 
 interface GetLatestBlocksProps {
   chain: string;
@@ -54,7 +55,9 @@ const getLatestBlocks = async ({
       return [];
     }
   } catch (error) {
-    console.error("Error fetching latest blocks:", error);
+    toast.error(
+      `Oof. This isn't good - There was an error fetching the latest block for this chain!`
+    );
     throw error;
   }
 };

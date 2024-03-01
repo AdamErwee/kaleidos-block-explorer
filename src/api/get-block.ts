@@ -8,6 +8,7 @@ import {
 } from "../types";
 import getBlockInfo from "../actions/get-block-info";
 import getTransactions from "../actions/get-transactions";
+import { toast } from "react-toastify";
 
 interface BlockProps {
   blockInfo: BlockInfoData;
@@ -25,7 +26,9 @@ const getBlock = async (hash: string): Promise<BlockProps> => {
 
     return { blockInfo, blockTransactions };
   } catch (error) {
-    console.error(`Error fetching block data: ${error}`);
+    toast.error(
+      `Mmmmmm, seems like there's an error getting the block's information`
+    );
     throw error;
   }
 };

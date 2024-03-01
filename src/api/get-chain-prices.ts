@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ChainInfo } from "../types";
 import { CHAINS } from "../constants/chains";
+import { toast } from "react-toastify";
 
 export const getChainPrices = async (): Promise<ChainInfo[]> => {
   try {
@@ -21,7 +22,7 @@ export const getChainPrices = async (): Promise<ChainInfo[]> => {
 
     return chains;
   } catch (error) {
-    console.error("Error fetching chain information:", error);
+    toast.error(`Siesa! There was an error fetching the chain prices.`);
     throw error;
   }
 };

@@ -6,6 +6,7 @@ import formatNumber from "./format-number";
 import determineTransactionVolumeAndReward from "./determine-transaction-volume-and-reward";
 import determineBlockVersion from "./determine-block-version";
 import calculateDifficulty from "./determine-block-difficulty";
+import { toast } from "react-toastify";
 
 const getBlockInfo = async (
   referenceBlock: BlockResponseData
@@ -47,7 +48,7 @@ const getBlockInfo = async (
       height: height,
       miner: determineMiner(referenceBlock),
       numberOfTransactions: formatNumber(numberOfTransactions),
-      difficulty: calculateDifficulty(bits), // TODO: calculate the difficulty
+      difficulty: calculateDifficulty(bits),
       merkleRoot: mrkl_root,
       version: determineBlockVersion(ver),
       bits: formatNumber(bits),
@@ -65,7 +66,9 @@ const getBlockInfo = async (
       })} BTC`,
     };
   } catch (error) {
-    console.error("Error fetching latest block information:", error);
+    toast.error(
+      `Mmmmmm, seems like there's an error getting the block's information`
+    );
     throw error;
   }
 };

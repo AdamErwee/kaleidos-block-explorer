@@ -24,12 +24,10 @@ export default function BlockPage({
   >(null);
 
   useEffect(() => {
-    getBlock(hash)
-      .then(({ blockInfo, blockTransactions }) => {
-        setBlock(blockInfo);
-        setTransactions(blockTransactions);
-      })
-      .catch((error) => console.error(error));
+    getBlock(hash).then(({ blockInfo, blockTransactions }) => {
+      setBlock(blockInfo);
+      setTransactions(blockTransactions);
+    });
   }, []);
 
   return (
