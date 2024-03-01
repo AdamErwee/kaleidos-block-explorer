@@ -14,6 +14,20 @@ export const BlockHeader = styled.div`
   border-bottom: 1px solid ${colors.light_grey};
 `;
 
+export const ReturnCard = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto; // Ensuring that the ReturnCard is far right of the header
+  font-size: 15px;
+  color: ${colors.link_blue};
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const BlockSubHeader = styled.span`
   margin: 5px 10px 0 10px;
   font-size: 12px;

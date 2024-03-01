@@ -5,14 +5,16 @@ import {
   BlockSubHeader,
   InfoCard,
   InfoRow,
+  ReturnCard,
 } from "../styles/block-info.styles";
 import Image from "next/image";
 import bitcoinIcon from "../../public/icons/bitcoin.png";
 import colors from "../styles/colors.styles";
 import { BlockInfoData } from "../types";
 import { toast } from "react-toastify";
-import { FaClipboard } from "react-icons/fa";
+import { FaArrowRight, FaClipboard } from "react-icons/fa";
 import { Fragment } from "react";
+import { useRouter } from "next/navigation";
 
 interface BlockInfoDataProps {
   infoData: BlockInfoData | null;
@@ -38,6 +40,7 @@ const headers: { key: keyof BlockInfoData; header: string }[] = [
 ];
 
 const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
+  const router = useRouter();
   return (
     <Fragment>
       <BlockHeader>
@@ -49,6 +52,14 @@ const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
         />
         <h2 style={{ color: colors.dark_grey }}>BTC /</h2>
         <h2>Block</h2>
+        <ReturnCard
+          onClick={() => {
+            router.push("/block-explorer/btc");
+          }}
+        >
+          <p>return</p>
+          <FaArrowRight />
+        </ReturnCard>
       </BlockHeader>
       <BlockSubHeader>
         {!infoData ? (
