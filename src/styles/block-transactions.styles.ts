@@ -39,7 +39,7 @@ export const TotalValueCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 100%;
   padding: 5px;
   border-radius: 3px;
   background-color: ${colors.lightest_green};
@@ -52,40 +52,42 @@ export const AddressValueRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  background-color: aliceblue;
-`;
-
-export const InfoCell = styled.div<{
-  width?: string;
-  readonly $cellType?: CellType;
-}>`
-  display: ${({ $cellType }) => $cellType === "icon" && "flex"};
-  justify-content: ${({ $cellType }) =>
-    $cellType === "icon" ? "center" : "unset"};
-  align-items: ${({ $cellType }) =>
-    $cellType === "icon" ? "center" : "unset"};
-
-  min-height: 100%;
-  min-width: ${({ width }) => width || "100%"};
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: ${({ $cellType }) => ($cellType === "header" ? "13px" : "15px")};
-  font-weight: ${({ $cellType }) => $cellType === "header" && "600"};
-  color: ${({ $cellType }) =>
-    $cellType ? cellTypeColorLookup[$cellType] : colors.primary};
 
   & > p {
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0 5px 0 0;
+    color: ${colors.primary};
 
     & > svg {
       align-self: center;
       padding: 0 0 0 5px;
     }
   }
+`;
+
+export const InfoCell = styled.div<{
+  width?: string;
+  readonly $cellType?: CellType;
+}>`
+  display: ${({ $cellType }) => $cellType === "centered" && "flex"};
+  justify-content: ${({ $cellType }) =>
+    $cellType === "centered" ? "center" : "unset"};
+  align-items: ${({ $cellType }) =>
+    $cellType === "centered" ? "center" : "unset"};
+
+  min-width: ${({ width }) => width || "100%"};
+  max-height: 105px;
+
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  overflow-y: scroll;
+
+  font-size: ${({ $cellType }) => ($cellType === "header" ? "13px" : "15px")};
+  font-weight: ${({ $cellType }) => $cellType === "header" && "600"};
+  color: ${({ $cellType }) =>
+    $cellType ? cellTypeColorLookup[$cellType] : colors.primary};
 `;
 
 

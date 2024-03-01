@@ -105,7 +105,7 @@ interface MiningPool {
   link: string;
 }
 
-type CellType = "icon" | "header" | "address" | "hash";
+type CellType = "icon" | "header" | "address" | "centered" | "hash";
 
 
 

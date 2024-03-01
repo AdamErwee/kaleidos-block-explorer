@@ -1,5 +1,6 @@
 import { FaArrowAltCircleRight, FaGlobe } from "react-icons/fa";
 import {
+  AddressValueRow,
   InfoCell,
   InfoRow,
   TotalValueCard,
@@ -22,44 +23,27 @@ const addressColorLookup: Record<InputOutputType, string> = {
 const getInputOutput = (dataType, data) => {
   return data.map((item, index) => {
     const key = `${index}_${item.address}_${item.value}`;
-
-    if (dataType === "address" && item.address) {
-      return (
-        <p key={key} style={{ color: addressColorLookup[item.type] }}>
-          {item.address}
-        </p>
-      );
-    }
-
     const iconColor =
-      dataType === "input-value" ? colors.link_blue : colors.light_green;
+      dataType === "input" ? colors.link_blue : colors.light_green;
 
     return (
-      <p key={key}>
-        {item.value}
-        {item.value && <FaGlobe size={12} color={iconColor} />}
-      </p>
+      <AddressValueRow key={key}>
+        <p
+          key={`${key}-address`}
+          style={{ color: addressColorLookup[item.type], maxWidth: "70%" }}
+        >
+          {item.address}
+        </p>
+        {item.type !== "coinbase" && (
+          <p key={`${key}-value`}>
+            {item.value}
+            <FaGlobe size={12} color={iconColor} />
+          </p>
+        )}
+      </AddressValueRow>
     );
   });
 };
-
-const test = [
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-  "test",
-];
 
 const BlockTransactions: React.FC<BlockTransactionsProps> = ({
   transactions,
@@ -76,40 +60,32 @@ const BlockTransactions: React.FC<BlockTransactionsProps> = ({
                     <InfoCell width="10%" $cellType="header">
                       Hash
                     </InfoCell>
-                    <InfoCell width="37.5%" $cellType="hash">
+                    <InfoCell width="80%" $cellType="hash">
                       {hash}
                     </InfoCell>
-                    <InfoCell width="10%"></InfoCell>
-                    <InfoCell width="27.5%"></InfoCell>
-                    <InfoCell width="15%">{timeStamp}</InfoCell>
+                    <InfoCell width="10%">{timeStamp}</InfoCell>
                   </InfoRow>
                   <InfoRow key={`address-row-${hash}`}>
                     <InfoCell width="10%"></InfoCell>
-                    <InfoCell width="22.5%" $cellType="address">
-                      {getInputOutput("address", inputs)}
+                    <InfoCell width="40%" $cellType="address">
+                      {getInputOutput("input", inputs)}
                     </InfoCell>
-                    <InfoCell width="15%">
-                      {getInputOutput("input-value", inputs)}
-                    </InfoCell>
-                    <InfoCell width="10%" $cellType="icon">
+                    <InfoCell width="10%" $cellType="centered">
                       <FaArrowAltCircleRight
                         size={30}
                         color={colors.light_green}
                       />
                     </InfoCell>
-                    <InfoCell width="42.5%">
-                      {/* {getInputOutput("address", outputs)} */}
-                      {/* {getInputOutput("output-value", outputs)} */}
+                    <InfoCell width="40%">
+                      {getInputOutput("output", outputs)}
                     </InfoCell>
                   </InfoRow>
                   <InfoRow key={`fee-row-${hash}`}>
                     <InfoCell width="10%" $cellType="header">
                       Fee
                     </InfoCell>
-                    <InfoCell width="37.5%">{fee}</InfoCell>
-                    <InfoCell width="10%"></InfoCell>
-                    <InfoCell width="27.5%"></InfoCell>
-                    <InfoCell width="15%">
+                    <InfoCell width="78%">{fee}</InfoCell>
+                    <InfoCell width="12%" $cellType="centered">
                       <TotalValueCard>{totalOutputValue}</TotalValueCard>
                     </InfoCell>
                   </InfoRow>
