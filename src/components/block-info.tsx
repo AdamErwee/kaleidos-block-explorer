@@ -10,6 +10,8 @@ import Image from "next/image";
 import bitcoinIcon from "../../public/icons/bitcoin.png";
 import colors from "../styles/colors";
 import { BlockInfoData } from "../types";
+import { toast } from "react-toastify";
+import { FaClipboard } from "react-icons/fa";
 
 interface BlockInfoDataProps {
   infoData: BlockInfoData | null;
@@ -35,7 +37,6 @@ const headers: { key: keyof BlockInfoData; header: string }[] = [
 ];
 
 // TODO: add container and replace <></>
-// TODO: Add Clipboard to hash row and add copy functionality
 const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
   return (
     <>
@@ -60,11 +61,24 @@ const BlockInfo: React.FC<BlockInfoDataProps> = ({ infoData }) => {
         {headers.map(({ header, key }) => {
           return (
             <InfoRow key={`${key}-row`}>
-              <InfoCard key={`${key}-title`} $header={true}>
+              <InfoCard key={`${key}-title`} type="header">
                 {header}
               </InfoCard>
-              <InfoCard key={`${key}-data`}>
+              <InfoCard key={`${key}-data`} type={key}>
                 {!infoData ? <Skeleton /> : infoData[key]}
+                {infoData && key === "hash" && (
+                  <FaClipboard
+                    size={15}
+                    style={{ padding: "0 15px", cursor: "pointer" }}
+                    onClick={() =>
+                      navigator.clipboard.writeText(infoData[key]).then(() => {
+                        toast.success("Copied to Clipboard!", {
+                          toastId: "copy-hash-success",
+                        });
+                      })
+                    }
+                  />
+                )}
               </InfoCard>
             </InfoRow>
           );

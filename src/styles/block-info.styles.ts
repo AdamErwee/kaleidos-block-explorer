@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import colors from "./colors";
+import { BlockInfoData } from "../types";
 
 export const BlockHeader = styled.div`
   display: flex;
@@ -34,10 +35,17 @@ export const InfoRow = styled.div`
   padding: 10px 0;
 `;
 
-export const InfoCard = styled.div<{ readonly $header?: boolean }>`
-  font-size: ${({ $header }) => ($header ? "13px" : "15px")};
-  font-weight: ${({ $header }) => $header && "600"};
+const typeColorLookup = {
+  header: colors.dark_grey,
+  miner: colors.link_blue,
+};
 
-  width: ${({ $header }) => ($header ? "30%" : "70%")};
-  color: ${({ $header }) => ($header ? colors.dark_grey : colors.primary)};
+export const InfoCard = styled.div<{
+  type: keyof BlockInfoData;
+}>`
+  font-size: ${({ type }) => (type === "header" ? "13px" : "15px")};
+  font-weight: ${({ type }) => type === "header" && "600"};
+
+  width: ${({ type }) => (type === "header" ? "30%" : "70%")};
+  color: ${({ type }) => typeColorLookup[type] || colors.primary};
 `;

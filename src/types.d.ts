@@ -70,6 +70,7 @@ interface BlockInfoData {
   transactionVolume: string;
   blockReward: string;
   feeReward: string;
+  header?: string;
 }
 
 type InputOutputType = "coinbase" | "known" | "unknown";
