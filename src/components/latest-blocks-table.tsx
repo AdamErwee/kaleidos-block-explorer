@@ -9,6 +9,7 @@ import {
 } from "../styles/table.styles";
 
 import { LatestBlockData } from "../types";
+import { useRouter } from "next/navigation";
 
 interface LatestBlockTableColumn {
   key: keyof LatestBlockData;
@@ -30,6 +31,8 @@ interface TableProps {
 }
 
 const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
+  const router = useRouter();
+
   return (
     <TableMain>
       <TableHead>
@@ -50,6 +53,12 @@ const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
                   key={key.toString()}
                   $isClickable={isClickable}
                   color={isClickable ? colors.link_blue : ""}
+                  onClick={() => {
+                    // I added this if a developer ever accidentally adds 'isClickable' to another column, ensuring that erroneous navigation doesn't occur
+                    if (isClickable && key === "hash") {
+                      router.push(`/block/btc/${row[key]}`);
+                    }
+                  }}
                 >
                   {row[key]}
                 </TableData>
