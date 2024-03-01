@@ -2,6 +2,7 @@ import axios from "axios";
 import { ChainInfo } from "../types";
 import { CHAINS } from "../constants/chains";
 import { toast } from "react-toastify";
+import formatNumber from "../actions/format-number";
 
 export const getChainPrices = async (): Promise<ChainInfo[]> => {
   try {
@@ -16,7 +17,9 @@ export const getChainPrices = async (): Promise<ChainInfo[]> => {
 
       return {
         ...chain,
-        currentPrice: tickerData.price_24h,
+        currentPrice: `${formatNumber(tickerData.price_24h, {
+          options: { minimumFractionDigits: 2 },
+        })}`,
       };
     });
 

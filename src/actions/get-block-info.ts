@@ -26,7 +26,7 @@ const getBlockInfo = async (
     fee,
   } = referenceBlock;
   try {
-    // Fetch latest block information
+    // Fetch latest block information (required to calculate confirmations)
     const response = await axios.get<BlockResponseData>(
       "https://blockchain.info/latestblock"
     );

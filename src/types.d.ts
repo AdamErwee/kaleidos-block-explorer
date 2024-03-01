@@ -7,7 +7,7 @@ export interface ChainInfo {
   apiReference: string;
   icon: StaticImageData;
   currencyPair: string; // Example: 'BTC-USD'
-  currentPrice?: number;
+  currentPrice?: string;
   searchable?: boolean;
 }
 

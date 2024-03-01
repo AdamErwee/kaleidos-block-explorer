@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { FiX } from "react-icons/fi";
 import {
   Input,
   InputContainer,
@@ -57,6 +58,12 @@ const BitcoinHashSearch: React.FC = () => {
             }
           }}
         />
+        {searchValue && (
+          <FiX
+            style={{ cursor: "pointer" }}
+            onClick={() => setSearchValue("")}
+          />
+        )}
       </InputContainer>
       <Button onClick={handleOnClick} text="Search" />
     </SearchContainer>
