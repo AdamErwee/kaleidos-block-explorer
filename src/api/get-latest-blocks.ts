@@ -46,6 +46,7 @@ const getLatestBlocks = async ({
             minedTime,
             miner: miner || guessed_miner,
             size: `${size} bytes`,
+            searchable: chain === "bitcoin",
           };
         }
       );

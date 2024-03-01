@@ -24,6 +24,7 @@ interface LatestBlockData {
   minedTime: string;
   miner: string;
   size: string;
+  searchable?: boolean;
 }
 
 // Describes the type for transaction data/response returned by blockchain.com's API

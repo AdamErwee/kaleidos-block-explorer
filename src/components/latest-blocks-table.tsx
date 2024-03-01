@@ -55,7 +55,7 @@ const LatestBlocksTable: React.FC<TableProps> = ({ data, isLoading }) => {
                   color={isClickable ? colors.link_blue : ""}
                   onClick={() => {
                     // I added this if a developer ever accidentally adds 'isClickable' to another column, ensuring that erroneous navigation doesn't occur. I could also use 'searchable' but this adds complexity and limitations for future use
-                    if (isClickable && key === "hash") {
+                    if (isClickable && key === "hash" && row.searchable) {
                       router.push(`/block/btc/${row[key]}`);
                     }
                   }}
