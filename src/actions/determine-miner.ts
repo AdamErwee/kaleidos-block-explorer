@@ -1,5 +1,13 @@
-import { BlockResponseData, MiningPool } from "../types";
+import { BlockResponseData } from "../types";
 import miningPoolLookupData from "../constants/miningPoolLookup.json";
+
+interface MiningPool {
+  id: number;
+  name: string;
+  addresses: string[];
+  tags: string[];
+  link: string;
+}
 
 const miningPools: MiningPool[] = miningPoolLookupData;
 

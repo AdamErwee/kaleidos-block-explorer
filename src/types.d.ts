@@ -1,7 +1,13 @@
 import { StaticImageData } from "next/image";
 
-export type ValidChain = "btc" | "eth" | "bch";
-export interface ChainInfo {
+// Chains used in the app (by symbol)
+type ValidChain = "btc" | "eth" | "bch";
+
+// Used to determine styling on Transaction input/output types
+type InputOutputType = "coinbase" | "known" | "unknown";
+
+// Chain Info used on the Block Explorer page
+interface ChainInfo {
   name: string;
   symbol: ValidChain;
   apiReference: string;
@@ -11,7 +17,8 @@ export interface ChainInfo {
   searchable?: boolean;
 }
 
-export interface LatestBlockData {
+// Formatted latest block data used on the Block Explorer (i.e. latest block) table
+interface LatestBlockData {
   height: number;
   hash: string;
   minedTime: string;
@@ -19,6 +26,7 @@ export interface LatestBlockData {
   size: string;
 }
 
+// Describes the type for transaction data/response returned by blockchain.com's API
 type Transaction = {
   inputs: {
     script: string;
@@ -34,6 +42,25 @@ type Transaction = {
   }[];
 };
 
+// The formatted Transactions data used on the Block Transactions component
+interface BlockTransactionData {
+  hash: string;
+  timeStamp: string;
+  fee: string;
+  totalOutputValue: string;
+  inputs: {
+    type: InputOutputType;
+    address: string;
+    value: string;
+  }[];
+  outputs: {
+    type: InputOutputType;
+    address: string;
+    value: string;
+  }[];
+}
+
+// Describes the type for a specific Block's data/response returned by blockchain.com's API
 interface BlockResponseData {
   bits: number;
   block_index: number;
@@ -53,6 +80,7 @@ interface BlockResponseData {
   weight: number;
 }
 
+// Formatted Block Info data used on the Block screen's info section
 interface BlockInfoData {
   hash: string;
   confirmations: string;
@@ -72,35 +100,5 @@ interface BlockInfoData {
   feeReward: string;
   header?: string;
 }
-
-type InputOutputType = "coinbase" | "known" | "unknown";
-interface BlockTransactionData {
-  hash: string;
-  timeStamp: string;
-  fee: string;
-  totalOutputValue: string;
-  inputs: {
-    type: InputOutputType;
-    address: string;
-    value: string;
-  }[];
-  outputs: {
-    type: InputOutputType;
-    address: string;
-    value: string;
-  }[];
-}
-
-interface MiningPool {
-  id: number;
-  name: string;
-  addresses: string[];
-  tags: string[];
-  link: string;
-}
-
-
-
-
 
 
