@@ -51,7 +51,7 @@ const LatestBlocksTable: React.FC<TableProps> = ({
       </TableHead>
       <tbody>
         {!isLoading ? (
-          data.map((row, index) => (
+          data?.map((row, index) => (
             <TableRow key={index}>
               {columns.map(({ key, isClickable }) => (
                 <TableData

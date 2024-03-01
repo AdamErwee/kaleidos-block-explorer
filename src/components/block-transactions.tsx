@@ -26,7 +26,7 @@ const addressColorLookup: Record<InputOutputType, string> = {
 
 // This function reduces cognitive load downstream. It gets an array (input/output) and returns a row with the address and value with its relevant styling
 const getInputOutput = (dataType: string, data: InputOutputData[]) => {
-  return data.map((item, index) => {
+  return data?.map((item, index) => {
     const key = `${index}_${item.address}_${item.value}`;
     const iconColor =
       dataType === "input" ? colors.link_blue : colors.light_green;

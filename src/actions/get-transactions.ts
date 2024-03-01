@@ -25,7 +25,7 @@ const getInputOutput = ({
   transactionIndex?: number;
   type: "input" | "output";
 }): FormattedInputOutput[] => {
-  return data.map(({ addr, value }) => {
+  return data?.map(({ addr, value }) => {
     // Find the Coinbase Transaction (i.e. the first transaction)
     if (transactionIndex === 0 && type === "input") {
       return {
