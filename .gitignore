@@ -131,3 +131,4 @@ dist
 
 #macOs
 .DS_Store
+.vercel
