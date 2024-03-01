@@ -2,7 +2,6 @@
 
 import styled from "styled-components";
 import colors from "./colors.styles";
-import { CellType } from "../types";
 
 export const TransactionsContainer = styled.div`
   display: flex;
@@ -27,13 +26,6 @@ export const InfoRow = styled.div`
   justify-content: space-between;
   height: 100%;
 `;
-
-const cellTypeColorLookup = {
-  icon: colors.light_green,
-  header: colors.dark_grey,
-  hash: colors.link_blue,
-  address: colors.link_blue,
-};
 
 export const TotalValueCard = styled.div`
   display: flex;
@@ -66,6 +58,15 @@ export const AddressValueRow = styled.div`
     }
   }
 `;
+
+type CellType = "icon" | "header" | "address" | "centered" | "hash";
+
+const cellTypeColorLookup = {
+  icon: colors.light_green,
+  header: colors.dark_grey,
+  hash: colors.link_blue,
+  address: colors.link_blue,
+};
 
 export const InfoCell = styled.div<{
   width?: string;
