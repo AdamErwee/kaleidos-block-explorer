@@ -3,6 +3,11 @@ import miningPoolLookupData from "../constants/miningPoolLookup.json";
 
 const miningPools: MiningPool[] = miningPoolLookupData;
 
+/*
+  This function determines the miner of a block based on the input script hex
+  It reads a lookup table of mining pool data to match against the decoded hex string.
+  See ./CREDITS.md for proper credit to lookup data used here.
+*/
 const determineMiner = (referenceBlock: BlockResponseData): string => {
   const inputScriptHex = referenceBlock.tx[0].inputs[0].script;
 

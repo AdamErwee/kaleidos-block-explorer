@@ -1,4 +1,4 @@
-// The following formula is an estimate (I suspect that I might be missing a crucial part) and derived from multiple sources
+// The following formula is an estimate (I suspect that I might be missing a crucial part) and derived from multiple sources (https://bitcoin.stackexchange.com/questions/5838/how-is-difficulty-calculated)
 
 import formatNumber from "./format-number";
 
