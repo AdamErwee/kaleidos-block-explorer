@@ -1,7 +1,7 @@
 "use client";
 
 import GlobalStyles, { Header } from "../styles/global-styles";
-import StyledComponentsRegistry from "../styles/styled-components-registry";
+import StyledComponentsRegistry from "../lib/styled-components-registry";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

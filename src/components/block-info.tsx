@@ -8,7 +8,7 @@ import {
 } from "../styles/block-info.styles";
 import Image from "next/image";
 import bitcoinIcon from "../../public/icons/bitcoin.png";
-import colors from "../styles/colors";
+import colors from "../styles/colors.styles";
 import { BlockInfoData } from "../types";
 import { toast } from "react-toastify";
 import { FaClipboard } from "react-icons/fa";

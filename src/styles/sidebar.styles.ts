@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import colors from "./colors";
+import colors from "./colors.styles";
 
 interface ChainProps {
   readonly $activeChain?: boolean;

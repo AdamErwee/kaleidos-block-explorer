@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import colors from "./colors";
+import colors from "./colors.styles";
 import { BlockInfoData } from "../types";
 
 export const BlockHeader = styled.div`

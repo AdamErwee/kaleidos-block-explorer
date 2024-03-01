@@ -8,7 +8,7 @@ import {
   TransactionsContainer,
 } from "../styles/block-transactions.styles";
 import { BlockTransactionData, InputOutputType } from "../types";
-import colors from "../styles/colors";
+import colors from "../styles/colors.styles";
 
 interface BlockTransactionsProps {
   transactions: BlockTransactionData[] | null;

@@ -1,7 +1,5 @@
 
-1. Add some comments for readability (e.g. get-miner)
-2.  Add some error handling for when data is returned as wrong or empty. So that the table shows "No data for"...when the user changes the URL.
-3.  Adjust searching to work as specified in the assessment
+
 4.  Move files to correct folders (e.g. colors, styles registry)
 5.  Check if searched block is in the current 'Latest Block" and use that data instead of making unnecessary API call.
 6.  Clean up TODOs

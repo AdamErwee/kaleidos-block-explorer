@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import colors from "../styles/colors";
+import colors from "../styles/colors.styles";
 import {
   TableData,
   TableHead,

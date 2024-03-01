@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import colors from "./colors";
+import colors from "./colors.styles";
 
 export const TableMain = styled.table`
   border-collapse: collapse;
