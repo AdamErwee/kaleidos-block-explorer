@@ -27,9 +27,12 @@ const getBlock = async (hash: string): Promise<BlockProps> => {
     return { blockInfo, blockTransactions };
   } catch (error) {
     toast.error(
-      `Mmmmmm, seems like there's an error getting the block's information`
+      `Mmmmmm, seems like there's an error getting the block's information`,
+      {
+        toastId: "error-get-block",
+      }
     );
-    throw error;
+    return error;
   }
 };
 

@@ -22,8 +22,10 @@ export const getChainPrices = async (): Promise<ChainInfo[]> => {
 
     return chains;
   } catch (error) {
-    toast.error(`Siesa! There was an error fetching the chain prices.`);
-    throw error;
+    toast.error(`Siesa! There was an error fetching the chain prices.`, {
+      toastId: "error-get-chain-prices",
+    });
+    return error;
   }
 };
 

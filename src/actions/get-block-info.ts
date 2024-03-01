@@ -67,9 +67,12 @@ const getBlockInfo = async (
     };
   } catch (error) {
     toast.error(
-      `Mmmmmm, seems like there's an error getting the block's information`
+      `Mmmmmm, seems like there's an error getting the block's information. Maybe refresh this bad boy!`,
+      {
+        toastId: "error-get-block-info",
+      }
     );
-    throw error;
+    return error;
   }
 };
 

@@ -56,9 +56,12 @@ const getLatestBlocks = async ({
     }
   } catch (error) {
     toast.error(
-      `Oof. This isn't good - There was an error fetching the latest block for this chain!`
+      `Oof. This isn't good - There was an error fetching the latest block for this chain!`,
+      {
+        toastId: "error-get-latest-blocks",
+      }
     );
-    throw error;
+    return error;
   }
 };
 
