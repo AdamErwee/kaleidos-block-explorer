@@ -11,12 +11,13 @@ import getTransactions from "../actions/get-transactions";
 import { toast } from "react-toastify";
 
 interface BlockProps {
-  blockInfo: BlockInfoData;
-  blockTransactions: BlockTransactionData[];
+  blockInfo: BlockInfoData | null;
+  blockTransactions: BlockTransactionData[] | null;
 }
 
 const getBlock = async (hash: string): Promise<BlockProps> => {
   try {
+    // This Response does not require CORS and can be called directly
     const response = await axios.get<BlockResponseData>(
       `https://blockchain.info/rawblock/${hash}`
     );

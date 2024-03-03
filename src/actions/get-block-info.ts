@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const getBlockInfo = async (
   referenceBlock: BlockResponseData
-): Promise<BlockInfoData> => {
+): Promise<BlockInfoData | null> => {
   const {
     hash,
     height,
@@ -26,7 +26,7 @@ const getBlockInfo = async (
     fee,
   } = referenceBlock;
   try {
-    // Fetch latest block information (required to calculate confirmations)
+    // Fetch latest block information (required to calculate confirmations) - Requires CORS
     const response = await axios.get<BlockResponseData>(
       "https://blockchain.info/latestblock"
     );
@@ -67,12 +67,26 @@ const getBlockInfo = async (
     };
   } catch (error) {
     toast.error(
-      `Mmmmmm, seems like there's an error getting the block's information. Maybe refresh this bad boy!`,
+      `Blocked by CORS? Time to extend your reach! Click here for a solution extension!`,
       {
         toastId: "error-get-block-info",
+        autoClose: false,
+        style: { cursor: "pointer" },
+        closeOnClick: true,
+        onClick: () => {
+          // Navigates to new tab for CORS extension
+          window.open(
+            "https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en",
+            "_blank"
+          );
+          // Makes sure the user knows what to do once they've navigated away from the page to the extension and then return.
+          toast.info("Refresh the page once you've got CORS up and running!", {
+            autoClose: false,
+          });
+        },
       }
     );
-    return error;
+    return null;
   }
 };
 
